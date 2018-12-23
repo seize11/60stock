@@ -16,6 +16,8 @@ import AgentListPage from "./pages/AgentList";
 import GameHomePage from "./pages/GameHome";
 import GameDetailPage from "./pages/GameDetail";
 import LoginPage from "./pages/LoginPage";
+import SideMenuPage from "./pages/SideMenuPage";
+import AwardResult from "./pages/AwardResult";
 
 import createStore from "./store/createStore";
 import { history } from "./utils/history";
@@ -42,6 +44,8 @@ const BasicRouter = () => (
         <Route path="/game_home" component={GameHomePage} />
         <Route path="/game_detail" component={GameDetailPage} />
         <Route path="/agent_list" component={AgentListPage} />
+        <Route path="/sideMenu" component={SideMenuPage} />
+        <Route path="/awardResult" component={AwardResult} />
         <Route path="/" component={BasicLayout} />
       </Switch>
     </ConnectedRouter>

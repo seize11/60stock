@@ -20,7 +20,7 @@ const defaultProps = {
   leftContent: "北京赛车(PK10)"
 };
 
-class PlayPage extends Component {
+class SideMenuPage extends Component {
   constructor(props) {
     super(props);
   }
@@ -57,8 +57,8 @@ class PlayPage extends Component {
   }
 }
 
-PlayPage.propTypes = propTypes;
-PlayPage.defaultProps = defaultProps;
+SideMenuPage.propTypes = propTypes;
+SideMenuPage.defaultProps = defaultProps;
 
 export default connect(
   state => ({
@@ -71,4 +71,4 @@ export default connect(
     getTableInitDataAction: getTableInitData,
     updateTableDataAction: updateTableData
   }
-)(PlayPage);
+)(SideMenuPage);
