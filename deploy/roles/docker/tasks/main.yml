@@ -1,0 +1,22 @@
+---
+- name: 创建项目的发布目录
+  file: path="{{ app_root }}"  state=directory
+
+- name: 传送 docker-compose 文件到远程服务器
+  template:
+    src={{ item.src }}  dest={{ item.dest }}  mode=064
+  with_items:
+    - { src: 'docker-compose.tmpl.j2', dest: '{{ app_root }}/docker-compose.{{version}}.yml' }
+    - { src: 'docker-compose.tmpl.j2', dest: '{{ app_root }}/docker-compose.latest.yml' }
+  become: true
+
+
+- name: 拉取最新镜像
+  shell: docker-compose -f docker-compose.{{version}}.yml pull
+  args:
+    chdir: "{{ app_root }}"
+
+- name: 重建实例
+  shell: docker-compose -f docker-compose.{{version}}.yml up -d --force-recreate
+  args:
+    chdir: "{{ app_root }}"

@@ -1,0 +1,32 @@
+.info {
+  margin-top: .4rem;
+  background-color: #fff;
+  padding: 0.4rem .4rem;
+
+  .title {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: .933333333rem;
+    line-height: .933333333rem;
+    color: #282722;
+    font-size: .373333333rem;
+  }
+
+
+  .count {
+    margin-top: 0.4rem;
+    span {
+      font-size: 1.018666667rem;
+      color: #282722;
+      font-weight: bold;
+    }
+
+    .money {
+      margin-left: 0.4rem;
+      height: .6rem;
+      font-size: .466666667rem;
+      line-height: .466666667rem;
+    }
+  }
+}

@@ -1,0 +1,35 @@
+.base {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  .main {
+    flex: 1;
+    overflow: auto;
+  }
+
+  .tab {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 2rem;
+    background: url(../../images/home/foot_bg.png) no-repeat;
+    background-size: cover;
+
+    .link {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: #e4ce87;
+      font-size: .24rem;
+
+      .icon {
+        width: .733333333rem;
+        height: .733333333rem;
+        background-size: cover;
+      }
+    }
+  }
+}

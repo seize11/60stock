@@ -1,0 +1,90 @@
+.agent {
+  height: 100%;
+  padding: 0.4rem px2rem(22.5);
+  background: #f2f5ea url(../../images/deposit/bg-ck.png) no-repeat bottom;
+  background-size: cover;
+  font-size: .373333333rem;
+  .card {
+    display: flex;
+    justify-content: space-between;
+    background-color: #fff;
+    border: 1px solid #d7bb70;
+    padding: .4rem;
+  }
+
+  .qrcode {
+    margin-right: 0.4rem;
+    width: px2rem(265) !important;
+    height: px2rem(265) !important;
+  }
+
+  .right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .line {
+      display: flex;
+      justify-content: space-between;
+
+      span:last-child {
+        color: #dbc076;
+      }
+    }
+
+    .copy {
+      width: px2rem(231);
+      align-self: flex-end;
+      height: px2rem(42);
+      line-height: px2rem(42);
+      text-align: center;
+      color: #fff;
+      background-color: #dbc076;
+      font-size: .333333333rem;
+    }
+  }
+
+
+  .menu {
+    display: flex;
+    justify-content: center;
+    padding: 0.2rem;
+    margin-top: 0.4rem;
+    background-color: #ffffff;
+    border-radius: .133333333rem;
+    text-align: center;
+    font-size: .293333333rem;
+
+    .item {
+      div {
+        color: #31302a;
+      }
+      &:not(:last-child) {
+        border-right: 1px solid #eee;
+      }
+    }
+    .icon {
+      width: 100%;
+      height: px2rem(70);
+      background-repeat: no-repeat;
+      background-position: 50%;
+      background-size: 30%;
+
+      &.role {
+        background-image: url(../../images/agent/zlgz.png);
+      }
+
+      &.list {
+        background-image: url(../../images/agent/wddl.png);
+      }
+
+      &.float {
+        background-image: url(../../images/agent/lscx.png);
+      }
+
+      &.balance {
+        background-image: url(../../images/agent/fdjs.png);
+      }
+    }
+  }
+}

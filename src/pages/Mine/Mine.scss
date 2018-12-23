@@ -1,0 +1,110 @@
+.mine {
+  height: 100%;
+  background: #f2f5ea url(../../images/deposit/bg-ck.png) no-repeat bottom;
+  background-size: cover;
+
+  .logout {
+    position: absolute;
+    top: .4rem;
+    left: .3rem;
+    width: auto;
+    font-size: .333333333rem;
+    color: #828074;
+    border-bottom: 1px solid #828074;
+    line-height: .666666667rem;
+  }
+
+  .info {
+    padding-top: .186666667rem;
+    height: 5.866666667rem;
+
+    .profile {
+      width: 2rem;
+      height: 2rem;
+      margin: 0 auto;
+      box-sizing: content-box;
+      background-color: #53524c;
+      border-radius: 50%;
+    }
+
+    .name {
+      text-align: center;
+      font-size: .466666667rem;
+      color: #31302a;
+      font-weight: bold;
+    }
+
+    .balance {
+      font-size: .306666667rem;
+      color: #b68e0a;
+      text-align: center;
+    }
+  }
+
+  .menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 .533333333rem;
+    border: 1px solid #d7bb70;
+    border-left: none;
+    border-right: none;
+    height: 1.733333333rem;
+
+    background-color: #fff;
+    text-align: center;
+
+    font-size: .293333333rem;
+
+    .item {
+      position: relative;
+      height: 1.173333333rem;
+      text-align: left;
+      background: url(../../images/mine/ck.png) no-repeat 50% 0;
+      background-size: .6rem .533333333rem;
+
+      .text {
+        position: absolute;
+        bottom: .133333333rem;
+        width: 100%;
+        text-align: center;
+        line-height: 1;
+        color: #31302a;
+      }
+    }
+
+
+  }
+}
+
+.card {
+  position: relative;
+  margin: .4rem .3rem 0;
+  width: auto;
+
+  .line {
+    display: flex;
+    justify-content: space-between;
+    &:nth-child(1) {
+      margin-bottom: .266666667rem;
+    }
+  }
+
+  .item {
+    position: relative;
+    width: 4.511866667rem;
+    height: 2.133333333rem;
+    text-align: left;
+    background:#fff url(../../images/mine/xzjl.png) no-repeat center .466666667rem;
+    background-size: .6rem .533333333rem;
+
+    .text {
+      width: 100%;
+      position: absolute;
+      text-align: center;
+      bottom: .466666667rem;
+      font-size: .293333333rem;
+      color: #31302a;
+    }
+  }
+}

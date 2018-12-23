@@ -1,0 +1,29 @@
+.bigRoad {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: flex-start;
+
+  .item {
+    position: relative;
+    border: 1px solid #eee;
+    background-color: #fff;
+
+    &.hasTie {
+      background-image: url('../../images/type/hhh.png');
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    .circle {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .text {
+      font-size: .386666667rem;
+      text-anchor: middle;
+    }
+  }
+}

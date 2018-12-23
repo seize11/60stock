@@ -1,0 +1,22 @@
+.notice {
+  width: 85%;
+  height: .733333333rem;
+  padding-left: 1.033333333rem;
+  color: #665840;
+  overflow: hidden;
+  font-size: .293333333rem;
+  background-image: url(../../images/home/broad_bg.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  line-height: .733333333rem;
+
+  div {
+    overflow: hidden;
+  }
+
+  span {
+    display: inline-block;
+    white-space: nowrap;
+    animation: wordsloop 10s  linear infinite normal;
+  }
+}

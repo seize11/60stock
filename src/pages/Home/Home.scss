@@ -1,0 +1,68 @@
+$card-list: ba, sba, dt, sdt;
+@function fill-card-img($name) {
+  @return .07s * $ratio;
+}
+
+.home {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: url(../../images/home/main_bg.png) no-repeat center;
+  background-size: cover;
+
+  .notice {
+    display: flex;
+    justify-content: center;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .main {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: space-around;
+
+    .line {
+      display: flex;
+      justify-content: space-around;
+
+      .card {
+        width: 4.16rem;
+        height: 3.733333333rem;
+        background-image: url(../../images/home/qidai.png);
+        background-size: cover;
+        background-repeat: no-repeat;
+
+        @each $name in $card-list {
+          &.#{$name} {
+            background-image: url(../../images/home/#{$name}.png);
+          }
+        }
+      }
+    }
+  }
+
+  .top-bar {
+    display: flex;
+    height: 1.706666667rem;
+    background: url(../../images/home/bar_bg.png) no-repeat center;
+    background-size: cover;
+
+    .money {
+      flex: 1;
+      background-image: url(../../images/home/deposit_1.png);
+      background-repeat: no-repeat;
+      background-size: .733333333rem 1.066666667rem;
+      background-position: center;
+
+      &.get {
+        background-image: url(../../images/home/deposit_2.png);
+      }
+    }
+  }
+}

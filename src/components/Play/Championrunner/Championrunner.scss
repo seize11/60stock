@@ -1,0 +1,47 @@
+.period {
+  .number {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 1.4rem;
+    padding: 0 0.133333333rem;
+    background-color: white;
+    font-size: 0.366666667rem;
+    // text-align: center;
+    .number_first {
+      flex: 1;
+      text-align: left;
+    }
+    .number_second {
+      flex: 4;
+      color: white;
+      text-align: center;
+    }
+  }
+  .timing {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 1.4rem;
+    padding: 0 0.133333333rem;
+    background-color: white;
+    font-size: 0.366666667rem;
+    text-align: center;
+    .timing_first {
+      flex: 1;
+    }
+    .timing_second {
+      flex: 2;
+      text-align: left;
+      padding-left: 0.5rem;
+    }
+
+    .timing_third {
+      flex: 2;
+      text-align: right;
+      padding-right: 0.5rem;
+    }
+  }
+}

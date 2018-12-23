@@ -1,0 +1,180 @@
+$counter-list: 10, 50, 100, 500, 1000, 5000, 10000, 50000;
+
+.gameDetail {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: absolute;
+  left: 100%;
+  transform-origin: left top;
+  transform: rotate(90deg);
+
+  .header {
+    height: getWidth(200);
+  }
+  .content {
+    display: flex;
+    position: relative;
+
+    .status {
+      position: absolute;
+      right: getWidth(240);
+      top: 0;
+      width: auto;
+    }
+  }
+  // --------------- 路子
+  .road {
+    display: flex;
+  }
+
+
+  // --------------- 砝码区
+  .counterWraper {
+    width: getWidth(183);
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  .counter {
+    display: flex;
+    height: getWidth(1000);
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+    .item {
+      width: getWidth(93);
+      height: getWidth(93);
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+
+      @each $value in $counter-list {
+        &.item_#{$value} {
+          background-image: url(../../images/chip/#{$value}_1.png);
+
+          &.active {
+            width: getWidth(173);
+            height: getWidth(173);
+            background-image: url(../../images/chip/#{$value}_2.png);
+          }
+        }
+      }
+    }
+  }
+
+  // --------------- 下注区域
+  .chip {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    display: flex;
+
+    .table {
+      display: flex;
+      flex-direction: column;
+      width: getWidth(625);
+      height: getWidth(225);
+      color: #fff;
+      font-size: .466666667rem;
+      background-position: center;
+      background-size: cover;
+    }
+
+    .value {
+      position: absolute;
+      color: #dfe834;
+      font-size: 12px;
+    }
+
+    .line_1 {
+      display: flex;
+      flex: 1;
+
+      .value {
+        top: getWidth(20);
+      }
+
+      .xiandui {
+        position: relative;
+        flex: 1;
+        display: flex;
+        padding-right: getWidth(45);
+        justify-content: flex-end;
+        align-items: flex-end;
+
+      }
+      .zhuangdui {
+        position: relative;
+        flex: 1;
+        display: flex;
+        align-items: flex-end;
+        padding-left: getWidth(45);
+      }
+      .he {
+        position: relative;
+        width: getWidth(120);
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+      }
+    }
+
+    .line_2 {
+      display: flex;
+      height: getWidth(80);
+      line-height: getWidth(80);
+
+      .value {
+        bottom: getWidth(-30);
+      }
+
+      .xian {
+        position: relative;
+        text-align: right;
+        padding-right: 0.4rem;
+        .value {
+          left: 61%;
+        }
+      }
+
+      .zhuang {
+        position: relative;
+        padding-left: 0.4rem;
+        .value {
+          left: 21%;
+        }
+      }
+    }
+
+    .btn {
+      flex: 0;
+      margin-left: getWidth(40);
+
+      .item {
+        width: getWidth(114);
+        height: getWidth(52);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+
+        &.cancel {
+          background-image: url('../../images/type/cancel-btn.png');
+        }
+        &.sure {
+          margin-top: 0.4rem;
+          background-image: url('../../images/type/sure-btn.png');
+        }
+      }
+    }
+  }
+}
+
+
+:global {
+  .rotate .am-toast {
+    transform: rotate(90deg);
+  }
+}

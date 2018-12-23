@@ -1,0 +1,24 @@
+.dish {
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+
+  flex-wrap: wrap;
+
+  .item {
+    border: 1px solid #eee;
+    background-color: #ffffff;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    &.item_1 {
+      background-image: url(../../images/type/ll.png);
+    }
+    &.item_2 {
+      background-image: url(../../images/type/hh.png);
+    }
+    &.item_3 {
+      background-image: url(../../images/type/lhh.png);
+    }
+  }
+}

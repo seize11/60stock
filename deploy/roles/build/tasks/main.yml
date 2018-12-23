@@ -1,0 +1,13 @@
+---
+- set_fact:
+    image={{ registry }}/{{ flag }}-{{ app_name }}
+    image_with_version={{ registry }}/{{ flag }}-{{ app_name }}:{{ version }}
+
+- name: 生成 docker 镜像
+  local_action: shell docker build -t {{ image_with_version }} .
+                chdir="{{ workspace }}"
+  become: false
+
+- name: 推送镜像到 registry
+  local_action: shell docker push {{ image_with_version }}
+  become: false

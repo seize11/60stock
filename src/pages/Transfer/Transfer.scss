@@ -1,0 +1,98 @@
+.transferList {
+  display: flex;
+  width: 94%;
+  margin: .4rem auto 0;
+  padding: .1rem 0;
+  background-color: #fff;
+
+  .item {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: .333333333rem;
+
+    .icon {
+      width: .933333333rem;
+      height: .933333333rem;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+
+      @for $i from 1 through 2 {
+        &.icon_#{$i} {
+          background-image: url('../../images/agent/agent_#{$i}.png');
+        }
+      }
+    }
+
+    .details {
+      flex: 0;
+      display: flex;
+      flex-direction: column;
+      margin-left: 0.4rem;
+      word-break: keep-all;
+
+      .name {
+        color: #000;
+      }
+    }
+
+
+
+    &:not(:last-child) {
+      border-right: 1px solid #e6e2d7;
+    }
+  }
+}
+
+.info {
+  margin-top: .4rem;
+  background-color: #fff;
+  padding: 0.4rem .4rem;
+
+  .title {
+    width: 100%;
+    height: .933333333rem;
+    line-height: .933333333rem;
+    color: #282722;
+    font-size: .373333333rem;
+  }
+
+
+  .count {
+    margin-top: 0.4rem;
+    span {
+      font-size: 1.018666667rem;
+      color: #282722;
+      font-weight: bold;
+    }
+
+    .money {
+      margin-left: 0.4rem;
+      height: .6rem;
+      font-size: .466666667rem;
+      line-height: .466666667rem;
+    }
+  }
+}
+
+
+.select {
+  display: flex;
+  margin-top: 0.4rem;
+
+  span {
+    flex: 1;
+    height: 1.066666667rem;
+    line-height: 1.066666667rem;
+    text-align: center;
+    font-size: .373333333rem;
+    background-color: #fff;
+
+    &.active {
+      background-color: #d5be5f;
+      color: #fff;
+    }
+  }
+}

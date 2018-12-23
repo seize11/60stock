@@ -1,0 +1,45 @@
+---
+- set_fact:
+    image={{ registry }}/{{ flag }}-{{ app_name }}
+    image_with_version={{ registry }}/{{ flag }}-{{ app_name }}:{{ version }}
+
+
+- name: 删除本地旧的镜像
+  local_action: shell docker rmi  -f $(docker images -f "before={{ image_with_version }}" {{ image }} -q)
+  become: false
+  ignore_errors: yes
+  run_once: true
+
+
+- name: 删除本地的孤儿镜像层
+  local_action: shell docker rmi $(docker images -f "dangling=true" -q)
+  become: false
+  ignore_errors: yes
+  run_once: true
+
+
+- name: 删除本地的孤儿存储层
+  local_action: shell docker volume rm $(docker volume ls -qf dangling=true)
+  become: false
+  ignore_errors: yes
+  run_once: true
+
+
+- name: 删除服务器已经退出的容器
+  shell: docker rm -v $(docker ps --all -q -f status=exited)
+  ignore_errors: yes
+
+
+- name: 删除服务器的孤儿镜像层
+  shell: docker rmi $(docker images -f "dangling=true" -q)
+  ignore_errors: yes
+
+
+- name: 删除服务器的孤儿存储层
+  shell: docker volume rm $(docker volume ls -qf dangling=true)
+  ignore_errors: yes
+
+
+- name: 删除服务器旧的镜像
+  shell: docker rmi  -f $(docker images -f "before={{ image_with_version }}" {{ image }} -q)
+  ignore_errors: yes

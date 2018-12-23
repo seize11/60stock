@@ -1,0 +1,86 @@
+.recharge {
+
+  .conditionList {
+    display: flex;
+    height: 2rem;
+    margin-top: .4rem;
+    .item {
+      position: relative;
+      background-image: url(../../images/deposit/1.png);
+      width: 1.733333333rem;
+      height: 100%;
+      background-repeat: no-repeat;
+      border: 1px solid #bfaa5f;
+      margin-left: .4rem;
+      background-position: center .4rem;
+      background-size: .933333333rem .8rem;
+      background-color: #fff;
+      border-radius: .133333333rem;
+
+
+      @for $i from 1 through 4 {
+        &.condition_#{$i} {
+          background-image: url('../../images/deposit/#{$i}.png');
+        }
+      }
+
+      &.active {
+        background-color: #f7ecb8;
+      }
+
+      span {
+        width: 100%;
+        text-align: center;
+        font-size: .266666667rem;
+        color: #1d1c17;
+        display: block;
+        margin-top: 1.466666667rem;
+      }
+    }
+  }
+
+  .info {
+    margin-top: .4rem;
+    background-color: #fff;
+    padding: 0.4rem .4rem;
+
+    .title {
+      width: 100%;
+      height: .933333333rem;
+      line-height: .933333333rem;
+      color: #282722;
+      font-size: .373333333rem;
+    }
+
+
+    .count {
+      margin-top: 0.4rem;
+      span {
+        font-size: 1.018666667rem;
+        color: #282722;
+        font-weight: bold;
+      }
+
+      .money {
+        margin-left: 0.4rem;
+        height: .6rem;
+        font-size: .466666667rem;
+        line-height: .466666667rem;
+      }
+    }
+  }
+
+  .rechargeBtn {
+    width: 6.8rem;
+    margin: .933333333rem auto 0;
+    background-color: #d4bd5f;
+    text-align: center;
+    height: .88rem;
+    line-height: .88rem;
+    font-size: .466666667rem;
+    color: #fff;
+    border-radius: .8rem;
+    background-image: url(../../images/mine/btn-bgs.png);
+    background-size: cover;
+  }
+}

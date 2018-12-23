@@ -1,0 +1,14 @@
+$grid-width: .0769231vh;
+$base-rem: .013333333rem;
+@function getWidth($num) {
+  @return $num * $grid-width;
+}
+
+@function getFontSize($size) {
+  @return $size / 0.75;
+}
+
+
+@function px2rem($size) {
+  @return $size * $base-rem;
+}

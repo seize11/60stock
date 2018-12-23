@@ -1,0 +1,41 @@
+.second-bar {
+  position: fixed;
+  top: 1.73333rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: $page-topbar-height;
+  padding: 0 0.133333333rem;
+  background-color: white;
+
+  // &.game {
+  //   height: $game-page-topbar-height;
+  //   border-bottom: 1px solid #695d3b;
+  //   background-color: #21211a;
+  // }
+
+  .left,
+  .mid,
+  .right {
+    border-right: 1px solid lightgray;
+    flex: 1;
+    // display: flex;
+    font-size: 0.466666667rem;
+    // align-items: center;
+    word-break: keep-all;
+    text-align: center;
+    // justify-content: center; /*水平居中*/
+    span {
+      font-size: 0.366666667rem;
+      display: block;
+      width: 100%;
+    }
+    .text_color {
+      color: black;
+    }
+  }
+  .right {
+    border-right: none;
+  }
+}

@@ -1,0 +1,38 @@
+.List {
+  display: flex;
+  // justify-content: space-between;
+  // align-items: center;
+  // align-items: baseline;
+  width: 100%;
+  // padding: 0 0.133333333rem;
+  background-color: white;
+  font-size: 0.366666667rem;
+  word-break: keep-all;
+  padding: none;
+  .links {
+    flex: 1;
+    text-align: center;
+    background: gray;
+
+    .link {
+      display: inline-block;
+      height: 0.4rem;
+      background: lightgray;
+      line-height: 0.4rem;
+      padding: 0.2rem;
+      width: 60%;
+      border-radius: 0.1rem;
+      text-align: center;
+      &:first-child {
+        margin-top: 0.3rem;
+      }
+    }
+    .active {
+      background: white;
+    }
+  }
+  .contents {
+    flex: 3;
+    z-index: 0;
+  }
+}

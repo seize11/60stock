@@ -1,0 +1,27 @@
+.bankCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 96%;
+  height: 3.613333333rem;
+  padding: 0.4rem;
+  margin: 0 auto;
+  font-size: .466666667rem;
+  background-image: url(../../images/mine/card.png);
+  background-size: cover;
+}
+
+.info {
+  margin-top: .4rem;
+  background-color: #ffffff;
+  font-size: .333333333rem;
+  color: #6a6a60;
+
+  .line {
+    display: flex;
+    justify-content: space-between;
+    height: 1.066666667rem;
+    line-height: 1.066666667rem;
+    padding: 0 .266666667rem;
+  }
+}

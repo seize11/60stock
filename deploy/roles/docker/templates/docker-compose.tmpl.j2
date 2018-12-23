@@ -1,0 +1,14 @@
+version: '3.0'
+services:
+    app:
+        image: bu6.io/{{ flag }}-{{ app_name }}:{{ version }}
+        container_name: {{ flag }}-{{ app_name }}
+        restart: always
+        ports:
+            - "5555:80"
+        stop_grace_period: 5s
+        logging:
+            driver: "json-file"
+            options:
+                max-size: "10m"
+                max-file: "1"

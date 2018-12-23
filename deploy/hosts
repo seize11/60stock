@@ -1,0 +1,7 @@
+[test]
+zhuzher.test    ansible_host=10.0.73.92
+
+
+[prod]
+zhuzher.admin.1      ansible_host=10.0.59.247
+zhuzher.admin.2      ansible_host=10.0.58.185

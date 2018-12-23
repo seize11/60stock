@@ -1,0 +1,40 @@
+.item {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px dashed #c7c6a6;
+  padding: .3266666667rem .4rem;
+  color: #282722;
+  font-size: .333333333rem;
+  background-color: #fff;
+
+  .icon {
+    margin-right: 0.4rem;
+    width: .88rem;
+    height: .88rem;
+    line-height: .88rem;
+    text-align: center;
+    font-size: .4rem;
+    color: #dbc682;
+    background-image: url(../../images/mine/r-bg.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+
+  .line {
+    display: flex;
+    justify-content: space-between;
+
+    &.info {
+      color: #848275;
+    }
+  }
+}
+
+
+.remarks {
+  padding-left: 0.4rem;
+  font-size: .35rem;
+  color: #fff;
+  background-color: #454545;
+}

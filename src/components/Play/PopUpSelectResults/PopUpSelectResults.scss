@@ -1,0 +1,141 @@
+.PopUpSelectResults {
+  position: fixed;
+  background: white;
+  bottom: 0;
+  width: 100%;
+  padding: 0 0.5rem 0 0.5rem;
+  font-size: 0.366666667rem;
+  .grayPop {
+    position: absolute;
+    width: 20%;
+    left: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: gray;
+    text-align: center;
+    height: 0.6rem;
+    top: -0.3rem;
+    border-radius: 0.3rem;
+    color: white;
+    font-size: 0.3rem;
+  }
+  .amount_list {
+    display: flex;
+    height: 1.5rem;
+    // justify-content: center;
+    justify-content: space-between;
+    align-items: center;
+    div {
+      //   flex: 1;
+      width: 12%;
+      padding: 0.05rem;
+      border: 1px solid goldenrod;
+      border-radius: 0.1rem;
+      text-align: center;
+      height: 0.6rem;
+      line-height: 0.5rem;
+    }
+  }
+  .confirmAmount {
+    display: flex;
+    height: 1.5rem;
+    justify-content: center;
+    // justify-content: space-between;
+    align-items: center;
+    .Amoutinput {
+      height: 0.75rem;
+      border-radius: 0.5rem;
+      border: 1px solid lightgray;
+      text-align: center;
+      width: 80%;
+    }
+    .preAmoutInput {
+      width: 1.5rem;
+      height: 0.7rem;
+      border-radius: 0.1rem;
+      border: 1px solid lightgray;
+      padding: 0;
+      border-radius: none;
+      border: none;
+    }
+    .preAmoutText,
+    .cancel {
+      width: 2rem;
+      height: 0.7rem;
+    }
+    .confirmButton {
+      width: 80%;
+      text-align: center;
+      height: 0.75rem;
+      border-radius: 0.5rem;
+      border: 1px solid lightgray;
+      background-color: goldenrod;
+      color: white;
+    }
+  }
+  .detailsWrapper {
+    .grid {
+      height: 1rem;
+      margin-top: -15px;
+      line-height: 1rem;
+      box-sizing: border-box;
+    }
+  }
+  .display {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    width: 100%;
+    position: absolute;
+    left: -0.05rem;
+    bottom: 2.9rem;
+
+    .table {
+      width: 100%;
+      // position: absolute;
+      // left: -0.05rem;
+      // bottom: -0.1rem;
+      .tableHead {
+        display: flex;
+
+        th {
+          width: 25%;
+          padding: 0;
+          background: white;
+          text-align: center;
+          opacity: 1;
+          border: 1px solid lightgray;
+        }
+      }
+      .tableItem {
+        // width: 25%;
+      }
+      .tableBody {
+        display: flex;
+        width: 100%;
+        td {
+          width: 25%;
+          background: white;
+          padding: 0;
+          text-align: center;
+          opacity: 1;
+          border: 1px solid lightgray;
+        }
+      }
+    }
+  }
+  .title {
+    height: 1rem;
+    background: gold;
+    margin-bottom: -0.1rem;
+    text-align: center;
+    line-height: 1rem;
+    color: white;
+    .titleIcon {
+      position: absolute;
+      left: -4rem;
+      top: 0.15rem;
+    }
+  }
+}

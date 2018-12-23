@@ -1,0 +1,41 @@
+.Single {
+  overflow: scroll;
+  height: 50vh;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  .rightItem {
+    width: 100%;
+    text-align: center;
+    .heads {
+      height: 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .sonWarpper {
+      width: 100%;
+      text-align: center;
+      background-color: white;
+      font-size: 0.366666667rem;
+      .grid {
+        height: 1rem;
+        margin-top: -15px;
+        line-height: 1rem;
+        box-sizing: border-box;
+        // border: 0.1rem solid yellow;
+        // background-color: yellow;
+        .selected {
+          border: 1px solid red;
+        }
+        // .innerDiv {
+        //   height: 0.8rem;
+        //   width: 0.8rem;
+        //   background-color: white;
+        //   margin-top: 0.1rem;
+        //   margin-left: 0.1rem;
+        // }
+      }
+    }
+  }
+}

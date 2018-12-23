@@ -1,0 +1,69 @@
+.lotty-scan {
+  width: 96%;
+  height: 7.466666667rem;
+  margin: .266666667rem auto 0;
+  background-color: #fff;
+  text-align: center;
+
+  .scan-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 3.733333333rem;
+    border-bottom: 3px solid #f3f3e9;
+
+    .info {
+      margin-bottom: 0.4rem;
+      font-size: .293333333rem;
+      color: #444339;
+    }
+  }
+
+
+  .scan-qrcode {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.2rem;
+
+    .qrcode {
+      width: 3.2rem;
+      height: 3.2rem;
+    }
+
+    .info {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      margin-left: 0.2rem;
+      padding: 0.2rem;
+      text-align: left;
+      font-size: .333333333rem;
+      color: #f3481a;
+    }
+
+    .alipay {
+      color: #444339;
+      border-bottom: 2px solid #444339;
+    }
+  }
+}
+
+.lotty-order {
+  width: 96%;
+  margin: .266666667rem auto 0;
+  background-color: #fff;
+  font-size: .333333333rem;
+
+  .order-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.2rem;
+    color: #444339;
+  }
+}
+
+.dep-btn {
+
+}
