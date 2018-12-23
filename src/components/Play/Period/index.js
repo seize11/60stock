@@ -59,8 +59,12 @@ class Period extends Component {
         </div>
         <div className={styles.timing}>
           <span className={styles.timing_first}>243424 期</span>
-          <span className={styles.timing_second}>243424 期</span>
-          <span className={styles.timing_third}>243424 期</span>
+          <span className={styles.timing_second}>
+            封盘:<span className={styles.secondInterval}>06:00</span>
+          </span>
+          <span className={styles.timing_third}>
+            开奖:<span className={styles.thirdInterval}>06:00</span>
+          </span>
         </div>
       </div>
     );
