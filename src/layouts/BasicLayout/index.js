@@ -8,6 +8,8 @@ import HomePage from "../../pages/Home";
 import MinePage from "../../pages/Mine";
 import AgentPage from "../../pages/Agent";
 import PlayPage from "../../pages/PlayPage";
+import SideMenuPage from "../../pages/SideMenuPage";
+import AwardResult from "../../pages/SideMenuPage";
 
 import { undoUi } from "../../utils/ui";
 import styles from "./BasicLayout.scss";
@@ -72,6 +74,8 @@ class BasicLayout extends Component {
             <Route path="/mine" component={MinePage} />
             <Route path="/agent" component={AgentPage} />
             <Route path="/play" component={PlayPage} />
+            <Route path="/sideMenu" component={SideMenuPage} />
+            <Route path="/awardResult" component={AwardResult} />
           </Switch>
         </div>
         <div className={styles.tab}>

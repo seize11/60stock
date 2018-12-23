@@ -7,6 +7,7 @@
   .rightItem {
     width: 100%;
     text-align: center;
+    color: black;
     .heads {
       height: 1rem;
       display: flex;
@@ -23,18 +24,27 @@
         margin-top: -15px;
         line-height: 1rem;
         box-sizing: border-box;
-        // border: 0.1rem solid yellow;
-        // background-color: yellow;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        span {
+          flex: 1;
+        }
+        .redNum {
+          color: red;
+        }
         .selected {
           border: 1px solid red;
         }
-        // .innerDiv {
-        //   height: 0.8rem;
-        //   width: 0.8rem;
-        //   background-color: white;
-        //   margin-top: 0.1rem;
-        //   margin-left: 0.1rem;
-        // }
+        position: relative;
+        img {
+          position: absolute;
+          right: 0;
+          bottom: 0;
+          height: 0.5rem;
+          width: 0.5rem;
+        }
       }
     }
   }

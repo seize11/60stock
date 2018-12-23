@@ -4,6 +4,7 @@ import History from "../../../utils/history";
 import { Accordion, List, Grid, Icon } from "antd-mobile";
 import styles from "./Single.scss";
 import "./Single.scss";
+import right_botttom_Image from "Images/type/right_botttom.png";
 
 const propTypes = {
   leftContent: PropTypes.any,
@@ -172,7 +173,11 @@ class Single extends Component {
                     }
                     onClick={this.toggleBorder.bind(this, dataItem)}
                   >
-                    {dataItem.name}
+                    <span>{dataItem.name}</span>
+                    <span className={styles.redNum}>{dataItem.name}</span>
+                    {this.state.selectIds.indexOf(dataItem.id) > -1 ? (
+                      <img src={right_botttom_Image} />
+                    ) : null}
                   </div>
                 )}
               />
