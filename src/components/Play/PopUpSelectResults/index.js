@@ -3,9 +3,11 @@ import PropTypes from "prop-types";
 import History from "../../../utils/history";
 
 import styles from "./PopUpSelectResults.scss";
-import { Checkbox, Icon, Grid, SwipeAction } from "antd-mobile";
+import SelfModal from "../SelfModal";
+import { Checkbox, Icon, Grid, SwipeAction, Modal } from "antd-mobile";
 
 const CheckboxItem = Checkbox.CheckboxItem;
+const operation = Modal.operation;
 const propTypes = {
   leftContent: PropTypes.any,
   rightContent: PropTypes.any,
@@ -40,32 +42,35 @@ const defaultProps = {
 
 class PopUpSelectResults extends Component {
   state = {
+    modal1: false,
     showPlaySecondBar: true,
     isShowDetail: true,
+    baseAmount: 5,
+    isShowModal: false,
     amountList: [
       {
         key: 0,
-        name: "5"
+        name: 5
       },
       {
         key: 1,
-        name: "10"
+        name: 10
       },
       {
         key: 2,
-        name: "20"
+        name: 20
       },
       {
         key: 3,
-        name: "50"
+        name: 50
       },
       {
         key: 4,
-        name: "100"
+        name: 100
       },
       {
         key: 5,
-        name: "500"
+        name: 500
       }
     ],
     tableList: [1, 2, 3, 4, 7]
@@ -76,6 +81,13 @@ class PopUpSelectResults extends Component {
   isShowDetail = () => {
     this.setState({ isShowDetail: !this.state.isShowDetail });
   };
+  changeBaseAmount = value => {
+    this.setState({ baseAmount: value });
+  };
+  isShowModal = () => {
+    this.setState({ isShowModal: !this.state.isShowModal });
+  };
+
   render() {
     const { details } = this.props;
     const { amountList, tableList, isShowDetail } = this.state;
@@ -173,7 +185,9 @@ class PopUpSelectResults extends Component {
         </div>
         <div className={styles.amount_list}>
           {amountList.map(item => (
-            <div>{item.name}</div>
+            <div onClick={this.changeBaseAmount.bind(this, item.name)}>
+              {item.name}
+            </div>
           ))}
         </div>
         <div className={styles.confirmAmount}>
@@ -181,6 +195,7 @@ class PopUpSelectResults extends Component {
             type="text"
             placeholder="输入金额"
             className={styles.Amoutinput}
+            value={this.state.baseAmount}
           />
           {/* <input
             type="text"
@@ -193,8 +208,13 @@ class PopUpSelectResults extends Component {
           />
           <div className={styles.preAmoutText}>预设金额</div>
           <div className={styles.cancel}>取 消</div>
-          <div className={styles.confirmButton}>确认</div>
+          <div className={styles.confirmButton} onClick={this.isShowModal}>
+            确认
+          </div>
         </div>
+        {this.state.isShowModal ? (
+          <SelfModal isShowModal={this.isShowModal} />
+        ) : null}
       </div>
     );
   }

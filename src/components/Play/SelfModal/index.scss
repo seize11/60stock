@@ -1,0 +1,98 @@
+.SelfModal {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  font-size: 0.4rem;
+
+  .outer {
+    width: 80%;
+    height: 70%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background: white;
+    color: black;
+    border-radius: 0.2rem 0.2rem 0 0;
+    text-align: center;
+    .title {
+      height: 1.5rem;
+      background: gold;
+      line-height: 1.5rem;
+      text-align: center;
+      color: white;
+      border-radius: 0.2rem 0.2rem 0 0;
+    }
+    .modalContent {
+      width: 100%;
+      padding: 0 0.5rem 0 0.5rem;
+
+      .thead {
+        height: 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 0.35rem;
+        border-bottom: 1px solid black;
+        span {
+          flex: 1;
+        }
+        span:first-child {
+          flex: 2;
+          text-align: left;
+        }
+      }
+      .tbody {
+        height: 0.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 0.35rem;
+
+        span {
+          flex: 1;
+        }
+        span:first-child {
+          flex: 2;
+          text-align: left;
+        }
+      }
+      .tbodyWrappper {
+        height: 7rem;
+        padding-top: 0.5rem;
+        border-bottom: 1px solid black;
+        overflow: scroll;
+      }
+      .total {
+        height: 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 0.35rem;
+        border-bottom: 1px solid black;
+        span {
+          flex: 1;
+        }
+        span:first-child {
+          flex: 2;
+          text-align: left;
+        }
+      }
+      .confirm {
+        span {
+          display: inline-block;
+          width: 60%;
+          height: 0.8rem;
+          background: yellow;
+          line-height: 0.8rem;
+          margin-top: 0.5rem;
+          border-radius: 1rem;
+        }
+      }
+    }
+  }
+}

@@ -41,23 +41,36 @@ const defaultProps = {
 };
 
 class List extends Component {
-  state = {
-    showPlaySecondBar: true,
-    currentPath: ""
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      showPlaySecondBar: true,
+      currentPath: ""
+    };
+  }
+  // state = {
+  //   showPlaySecondBar: true,
+  //   currentPath: ""
+  // };
   componentDidMount() {
     // location.pathname
     this.changeIndex(location.pathname);
   }
   changeIndex = path => {
-    this.setState({ currentPath: path });
+    console.log(path);
+    if (path == "/play" || path == "/play/") {
+      this.setState({ currentPath: "/play/double" });
+    } else {
+      this.setState({ currentPath: path });
+    }
   };
   render() {
     const { TAB_LIST } = this.props;
-
+    console.log(this.props);
     return (
       <div className={styles.List}>
         <div className={styles.links}>
+          {console.log(this.state.currentPath)}
           {TAB_LIST.map(item => (
             <Link
               to={item.path}
@@ -80,7 +93,7 @@ class List extends Component {
 
         <div className={styles.contents}>
           <Switch>
-            <Route path="/play/single" component={Single} />
+            <Route path="/play/single" component={Single} {...this.props} />
             <Route path="/play/championrunner" component={Championrunner} />
             <Route path="/play/" component={Double} />
           </Switch>
