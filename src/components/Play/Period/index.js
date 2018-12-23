@@ -15,19 +15,59 @@ const propTypes = {
 
 const defaultProps = {
   leftContent: "额  度",
-  numberList: [1, 2, 33, 4, 21, 3, 4, 4, 3, 6]
+  numberList: [1, 2, 33, 4, 21, 3, 4, 4, 3, 6],
+  endTime: 1546784956000
 };
 
 class Period extends Component {
   state = {
-    showPlaySecondBar: true
+    showPlaySecondBar: true,
+    minute: 0,
+    second: 0
   };
+  componentDidMount() {
+    if (this.timer) clearInterval(this.timer);
+    if (this.props.endTime) {
+      // let endTime = this.props.endTime.replace(/-/g, "/");
+      // console.log(this.props.endTime);
+      this.countFun(this.props.endTime);
+    }
+  }
+  //组件卸载取消倒计时
+  componentWillUnmount() {
+    clearInterval(this.timer);
+  }
   bg3() {
     var r = Math.floor(Math.random() * 256);
     var g = Math.floor(Math.random() * 256);
     var b = Math.floor(Math.random() * 256);
     return "rgb(" + r + "," + g + "," + b + ")";
   }
+  countFun = time => {
+    let end_time = new Date(time).getTime(),
+      sys_second = end_time - new Date().getTime();
+    this.timer = setInterval(() => {
+      //防止倒计时出现负数
+      if (sys_second > 1000) {
+        sys_second -= 1000;
+        let minute = Math.floor((sys_second / 1000 / 60) % 60);
+        let second = Math.floor((sys_second / 1000) % 60);
+        this.setState(
+          {
+            minute: minute < 10 ? "0" + minute : minute,
+            second: second < 10 ? "0" + second : second
+          },
+          () => {
+            // console.log(this.state.minute, "-", this.state.second);
+          }
+        );
+      } else {
+        clearInterval(this.timer);
+        //倒计时结束时触发父组件的方法
+        //this.props.timeEnd();
+      }
+    }, 1000);
+  };
   render() {
     const { numberList } = this.props;
 
@@ -60,10 +100,16 @@ class Period extends Component {
         <div className={styles.timing}>
           <span className={styles.timing_first}>243424 期</span>
           <span className={styles.timing_second}>
-            封盘:<span className={styles.secondInterval}>06:00</span>
+            封盘:
+            <span className={styles.secondInterval}>
+              {`${this.state.minute}:${this.state.second}`}
+            </span>
           </span>
           <span className={styles.timing_third}>
-            开奖:<span className={styles.thirdInterval}>06:00</span>
+            开奖:
+            <span className={styles.thirdInterval}>{`${this.state.minute}:${
+              this.state.second
+            }`}</span>
           </span>
         </div>
       </div>

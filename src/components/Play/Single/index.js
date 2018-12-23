@@ -5,6 +5,8 @@ import { Accordion, List, Grid, Icon } from "antd-mobile";
 import styles from "./Single.scss";
 import "./Single.scss";
 import right_botttom_Image from "Images/type/right_botttom.png";
+import { connect } from "react-redux";
+import { getTableInitData, updateTableData } from "../../../actions/play";
 
 const propTypes = {
   leftContent: PropTypes.any,
@@ -102,18 +104,28 @@ const defaultProps = {
 };
 
 class Single extends Component {
-  state = {
-    showPlaySecondBar: true,
-    selectIds: [],
-    isShowSonsIds: []
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      showPlaySecondBar: true,
+      selectIds: [],
+      isShowSonsIds: []
+    };
+  }
+  // state = {
+  //   showPlaySecondBar: true,
+  //   selectIds: [],
+  //   isShowSonsIds: []
+  // };
   componentDidMount() {}
   onChange = key => {
     console.log(key);
   };
   toggleNum = dataItem => {
     if (this.state.isShowSonsIds.indexOf(dataItem.id) > -1) {
-      let delIndex = this.state.selectIds.filter(item => item != dataItem.id);
+      let delIndex = this.state.isShowSonsIds.filter(
+        item => item != dataItem.id
+      );
       this.setState({ isShowSonsIds: delIndex });
     } else {
       let aRR = this.state.isShowSonsIds;
@@ -124,16 +136,21 @@ class Single extends Component {
   toggleBorder = dataItem => {
     if (this.state.selectIds.indexOf(dataItem.id) > -1) {
       let delIndex = this.state.selectIds.filter(item => item != dataItem.id);
-      this.setState({ selectIds: delIndex });
+      this.setState({ selectIds: delIndex }, () => {
+        console.log(dataItem, this.state.selectIds);
+      });
     } else {
       let aRR = this.state.selectIds;
       aRR.push(dataItem.id);
-      this.setState({ selectIds: aRR });
+      this.setState({ selectIds: aRR }, () => {
+        console.log(dataItem, this.state.selectIds);
+      });
     }
   };
 
   render() {
     const { numberList } = this.props;
+    console.log(this.props);
     return (
       <div className={styles.Single}>
         {numberList.map((item, index) => (
@@ -192,4 +209,16 @@ class Single extends Component {
 Single.propTypes = propTypes;
 Single.defaultProps = defaultProps;
 
-export default Single;
+// export default Single;
+export default connect(
+  state => ({
+    base: state.base,
+    userName: state.user.name,
+    balance: state.account.balance,
+    table: state.table
+  }),
+  {
+    getTableInitDataAction: getTableInitData,
+    updateTableDataAction: updateTableData
+  }
+)(Single);
