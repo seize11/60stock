@@ -75,9 +75,7 @@ class PopUpSelectResults extends Component {
     ],
     tableList: [1, 2, 3, 4, 7]
   };
-  onChange(e) {
-    console.log(e);
-  }
+  onChange(e) {}
   isShowDetail = () => {
     this.setState({ isShowDetail: !this.state.isShowDetail });
   };

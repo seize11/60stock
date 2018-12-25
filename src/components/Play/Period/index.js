@@ -29,7 +29,6 @@ class Period extends Component {
     if (this.timer) clearInterval(this.timer);
     if (this.props.endTime) {
       // let endTime = this.props.endTime.replace(/-/g, "/");
-      // console.log(this.props.endTime);
       this.countFun(this.props.endTime);
     }
   }
@@ -57,9 +56,7 @@ class Period extends Component {
             minute: minute < 10 ? "0" + minute : minute,
             second: second < 10 ? "0" + second : second
           },
-          () => {
-            // console.log(this.state.minute, "-", this.state.second);
-          }
+          () => {}
         );
       } else {
         clearInterval(this.timer);

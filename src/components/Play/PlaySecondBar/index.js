@@ -31,7 +31,6 @@ class PlaySecondBar extends Component {
   };
   toggleCls = showPlaySecondBar => {
     this.setState({ showPlaySecondBar: !this.state.showPlaySecondBar });
-    console.log(this.state.showPlaySecondBar);
   };
   render() {
     const {

@@ -96,6 +96,7 @@
       // position: absolute;
       // left: -0.05rem;
       // bottom: -0.1rem;
+      border-collapse: collapse;
       .tableHead {
         display: flex;
 
@@ -106,6 +107,8 @@
           text-align: center;
           opacity: 1;
           border: 1px solid lightgray;
+          // margin-right: -1px;
+          // margin-bottom: -1px;
         }
       }
       .tableItem {
@@ -121,6 +124,8 @@
           text-align: center;
           opacity: 1;
           border: 1px solid lightgray;
+          // margin-right: -1px;
+          // margin-bottom: -1px;
         }
       }
     }

@@ -1,51 +1,59 @@
-import actionTypes from '../constants/actionTypes';
-import { CALL_API } from '../constants/symbols';
+import actionTypes from "../constants/actionTypes";
+import { CALL_API } from "../constants/symbols";
 import {
-  LOGIN, RECHARGE_CODITION, RECHARGE_APPLY,
-  WITHDRAW, USER_TRANSFER, USER_RECORDS, USER_BANK_CARD,
-  LOGOUT, BANK_VAL, BANK_BIND, CHANGE_PASSWORD,
-} from '../constants/api';
+  LOGIN,
+  RECHARGE_CODITION,
+  RECHARGE_APPLY,
+  WITHDRAW,
+  USER_TRANSFER,
+  USER_RECORDS,
+  USER_BANK_CARD,
+  LOGOUT,
+  BANK_VAL,
+  BANK_BIND,
+  CHANGE_PASSWORD
+} from "../constants/api";
 
 export function login({ account, password }, success, error) {
   return {
     [CALL_API]: {
       url: LOGIN,
-      method: 'post',
+      method: "post",
       data: {
         account,
-        password,
+        password
       },
       types: [
         actionTypes.LOGIN_REQUEST,
         actionTypes.LOGIN_SUCCESS,
-        actionTypes.LOGIN_FAILURE,
+        actionTypes.LOGIN_FAILURE
       ],
       success,
-      error,
-    },
+      error
+    }
   };
 }
 
 export function changeConditionType(type) {
   return {
     type: actionTypes.CHANGE_CONDITION_TYPE,
-    payload: type,
+    payload: type
   };
 }
 export function getRechargeCondition(success, error) {
   return {
     [CALL_API]: {
       url: RECHARGE_CODITION,
-      method: 'post',
+      method: "post",
       data: {},
       types: [
         actionTypes.GET_RECHARGE_CONDITION_REQUEST,
         actionTypes.GET_RECHARGE_CONDITION_SUCCESS,
-        actionTypes.GET_RECHARGE_CONDITION_FAILURE,
+        actionTypes.GET_RECHARGE_CONDITION_FAILURE
       ],
       success,
-      error,
-    },
+      error
+    }
   };
 }
 
@@ -53,14 +61,14 @@ export function rechargeApply({ amount, type }, success, error) {
   return {
     [CALL_API]: {
       url: RECHARGE_APPLY,
-      method: 'post',
+      method: "post",
       data: {
         amount,
-        type,
+        type
       },
       success,
-      error,
-    },
+      error
+    }
   };
 }
 
@@ -68,10 +76,10 @@ export function getBankCard(success, error) {
   return {
     [CALL_API]: {
       url: USER_BANK_CARD,
-      method: 'post',
+      method: "post",
       success,
-      error,
-    },
+      error
+    }
   };
 }
 
@@ -79,27 +87,33 @@ export function withdraw({ amount }, success, error) {
   return {
     [CALL_API]: {
       url: WITHDRAW,
-      method: 'post',
+      method: "post",
       data: {
-        amount,
+        amount
       },
       success,
-      error,
-    },
+      error
+    }
   };
 }
 
-export function transfer({ amount, accountType, operationType }, success, error) {
+export function transfer(
+  { amount, accountType, operationType },
+  success,
+  error
+) {
   return {
     [CALL_API]: {
       url: USER_TRANSFER,
-      method: 'post',
+      method: "post",
       data: {
-        amount, accountType, operationType,
+        amount,
+        accountType,
+        operationType
       },
       success,
-      error,
-    },
+      error
+    }
   };
 }
 
@@ -107,25 +121,27 @@ export function chenkBankNo({ cardNo, name }, success, error) {
   return {
     [CALL_API]: {
       url: BANK_VAL,
-      method: 'post',
+      method: "post",
       data: {
-        cardNo, name,
+        cardNo,
+        name
       },
       success,
-      error,
-    },
+      error
+    }
   };
 }
 
-export function getRecords({
-  accountType, startTime, endTime, timeType,
-  page, limit,
-}, success, error) {
+export function getRecords(
+  { accountType, startTime, endTime, timeType, page, limit },
+  success,
+  error
+) {
   const data = {
     accountType,
     timeType,
     page,
-    limit,
+    limit
   };
 
   if (startTime) {
@@ -135,11 +151,11 @@ export function getRecords({
   return {
     [CALL_API]: {
       url: USER_RECORDS,
-      method: 'post',
+      method: "post",
       data,
       success,
-      error,
-    },
+      error
+    }
   };
 }
 
@@ -147,42 +163,45 @@ export function logout(success, error) {
   return {
     [CALL_API]: {
       url: LOGOUT,
-      method: 'post',
+      method: "post",
       success,
-      error,
-    },
+      error
+    }
   };
 }
 
-export function bindCard({
-  bankName, cardNo, mobile, realName,
-}, success, error) {
-  console.log(bankName, cardNo, mobile, realName);
+export function bindCard(
+  { bankName, cardNo, mobile, realName },
+  success,
+  error
+) {
   return {
     [CALL_API]: {
       url: BANK_BIND,
-      method: 'post',
+      method: "post",
       data: {
-        bankName, cardNo, mobile, realName,
+        bankName,
+        cardNo,
+        mobile,
+        realName
       },
       success,
-      error,
-    },
+      error
+    }
   };
 }
 
-export function changePassword({
-  newPassword, oldPassword,
-}, success, error) {
+export function changePassword({ newPassword, oldPassword }, success, error) {
   return {
     [CALL_API]: {
       url: CHANGE_PASSWORD,
-      method: 'post',
+      method: "post",
       data: {
-        newPassword, oldPassword,
+        newPassword,
+        oldPassword
       },
       success,
-      error,
-    },
+      error
+    }
   };
 }

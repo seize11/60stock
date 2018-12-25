@@ -1,23 +1,29 @@
 import actionTypes from "../constants/actionTypes";
 import { CALL_API } from "../constants/symbols";
-import { ACCOUNT_BALANCE, ACCOUNT_DETAILS } from "../constants/api";
+import {
+  ACCOUNT_BALANCE,
+  ACCOUNT_DETAILS,
+  GET_TOTAL_LIST
+} from "../constants/api";
 
-export function doChip({ details, gameType, tableId }, success, error) {
+export function getToatalList(success, error) {
   return {
     [CALL_API]: {
-      url: CHIP,
+      url: GET_TOTAL_LIST,
       method: "post",
-      data: {
-        details,
-        gameType,
-        tableId
-      },
+      types: [
+        actionTypes.GET_TOTAL_LIST_REQUEST,
+        actionTypes.GET_TOTAL_LIST_SUCCESS,
+        actionTypes.GET_TOTAL_LIST_FAILURE
+      ],
       success,
       error
     }
   };
 }
-
+export function changeSelectPopsAction(selectIds) {
+  return { type: actionTypes.CHANGE_SELECT_POPS, payload: selectIds };
+}
 export function getAccountDetails(success, error) {
   return {
     [CALL_API]: {

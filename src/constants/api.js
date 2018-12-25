@@ -55,3 +55,4 @@ export const TABLE_TCB_FAST = "/topic/tcb/trend/fast";
 export const GET_TABLE_CHIP = "/table/player/bet/amount";
 
 //playPage页面交互贡公共参数
+export const GET_TOTAL_LIST = "/lottery/menu/1";

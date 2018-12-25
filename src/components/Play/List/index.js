@@ -57,7 +57,6 @@ class List extends Component {
     this.changeIndex(location.pathname);
   }
   changeIndex = path => {
-    console.log(path);
     if (path == "/play" || path == "/play/") {
       this.setState({ currentPath: "/play/double" });
     } else {
@@ -66,11 +65,9 @@ class List extends Component {
   };
   render() {
     const { TAB_LIST } = this.props;
-    console.log(this.props);
     return (
       <div className={styles.List}>
         <div className={styles.links}>
-          {console.log(this.state.currentPath)}
           {TAB_LIST.map(item => (
             <Link
               to={item.path}
@@ -93,7 +90,7 @@ class List extends Component {
 
         <div className={styles.contents}>
           <Switch>
-            <Route path="/play/single" component={Single} {...this.props} />
+            <Route path="/play/single" component={Single} />
             <Route path="/play/championrunner" component={Championrunner} />
             <Route path="/play/" component={Double} />
           </Switch>

@@ -19,6 +19,7 @@ import List from "../../components/Play/List";
 import MaskNav from "../../components/Play/MaskNav";
 import TopBar from "../../components/TopBar";
 import PopUpSelectResults from "../../components/Play/PopUpSelectResults";
+import { getToatalList } from "../../actions/play";
 
 const propTypes = {};
 
@@ -34,7 +35,9 @@ class PlayPage extends Component {
     };
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    this.props.getToatalListAction();
+  }
 
   componentWillUnmount() {
     SocketUtils.unsubscribe();
@@ -76,7 +79,9 @@ class PlayPage extends Component {
         <PlaySecondBar />
         <Period />
         <List {...this.props} />
-        <PopUpSelectResults {...this.props} />
+        {this.props.changeSelectPops.length > 0 ? (
+          <PopUpSelectResults {...this.props} />
+        ) : null}
         <MaskNav
           isShow={this.state.show}
           handleExit={() => {
@@ -96,10 +101,13 @@ export default connect(
     base: state.base,
     userName: state.user.name,
     balance: state.account.balance,
-    table: state.table
+    table: state.table,
+    changeSelectPops: state.play.selectIds,
+    getTotalList: state.play.totalList
   }),
   {
     getTableInitDataAction: getTableInitData,
-    updateTableDataAction: updateTableData
+    updateTableDataAction: updateTableData,
+    getToatalListAction: getToatalList
   }
 )(PlayPage);
