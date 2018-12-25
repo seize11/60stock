@@ -20,25 +20,25 @@ const defaultProps = {
 		{
 			name: '未结明细',
 			key: 0,
-			path: '/play/double',
+			path: '/unfinishedDetail',
 			img: rightIconImage,
 		},
 		{
 			name: '今日已结',
 			key: 1,
-			path: '/play/single',
+			path: '/unfinishedDetail',
 			img: rightIconImage,
 		},
 		{
 			name: '开奖结果',
 			key: 3,
-			path: '/play/championrunner',
+			path: '/awardResult',
 			img: rightIconImage,
 		},
 		{
 			name: '游戏规则',
 			key: 4,
-			path: '/play/championrunner',
+			path: '/unfinishedDetail',
 			img: rightIconImage,
 		},
 	],
@@ -51,6 +51,10 @@ class MaskNav extends Component {
 	componentDidMount() {
 		// location.pathname
 	}
+	handleGoPage(index) {
+		this.props.history.push(defaultProps.TAB_LIST[index].path);
+		console.log(this);
+	}
 	render() {
 		return (
 			<div className={styles.mask_nav} style={{ display: this.props.isShow ? 'block' : 'none' }}>
@@ -61,7 +65,13 @@ class MaskNav extends Component {
 				<div className={styles.mask_nav_content}>
 					{defaultProps.TAB_LIST.map((item, index) => {
 						return (
-							<div className={styles.mask_nav_content_item} key={item.key}>
+							<div
+								className={styles.mask_nav_content_item}
+								key={item.key}
+								onClick={() => {
+									this.handleGoPage(index);
+								}}
+							>
 								<img src={item.img} alt="" />
 								{item.name}
 							</div>
