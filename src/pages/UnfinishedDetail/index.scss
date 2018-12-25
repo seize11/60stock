@@ -1,125 +1,124 @@
 .unfinished_detail {
-	display: flex;
-	padding-top: $page-topbar-height;
-	flex-direction: column;
-	min-height: 100%;
-	color: #caa857;
-	background: #f2f5ea url(../../images/deposit/bg-ck.png) no-repeat;
-	background-size: cover;
-	&.game {
-		padding-top: $game-page-topbar-height;
-	}
-	&_nav {
-		width: 100vw;
-		height: 1.45rem;
-		background: #ffffff;
-		&_item {
-			display: inline-block;
-			font-size: 0.36rem;
-			text-align: center;
-			line-height: 1.45rem;
-			position: relative;
-			&::before {
-				content: '';
-				width: 1px;
-				height: 0.55rem;
-				background: rgb(209, 209, 209);
-				position: absolute;
-				right: 0;
-				top: 0.45rem;
-			}
-			&:nth-of-type(1) {
-				width: 2.7rem;
-			}
-			&:nth-of-type(2) {
-				width: 2.7rem;
-			}
-			&:nth-of-type(3) {
-				width: 1.55rem;
-			}
-			&:nth-of-type(4) {
-				width: 1.55rem;
-			}
-			&:nth-of-type(5) {
-				&::before {
-					background: #ffffff;
-				}
-				width: 1.5rem;
-			}
-		}
-	}
-	&_content {
-		margin-top: 0.26rem;
-		background: #ffffff;
-		color: rgb(76, 76, 76);
-		&_item {
-			height: 1.06rem;
-			box-sizing: border-box;
-			text-align: center;
-			width: 100vw;
-			display: flex;
-			border-bottom: 1px solid rgb(244, 244, 244);
-			.am-swipe-content {
-				display: flex;
-			}
-			&_cell {
-				font-size: 0.32rem;
-				height: 100%;
-				line-height: 0.37rem;
-				vertical-align: middle;
-				margin-top: 0.16rem;
-				&:nth-of-type(1) {
-					width: calc(2.7rem - 15px);
-				}
-				&:nth-of-type(2) {
-					width: 2.7rem;
-					span {
-						color: rgb(220, 196, 116);
-					}
-				}
-				&:nth-of-type(3) {
-					width: 1.55rem;
-					span {
-						color: rgb(220, 96, 71);
-					}
-				}
-				&:nth-of-type(4) {
-					line-height: 0.74rem;
-					width: 1.55rem;
-				}
-				&:nth-of-type(5) {
-					line-height: 0.74rem;
-					color: rgb(207, 173, 56);
-					&::before {
-						background: #ffffff;
-					}
-					width: calc(1.5rem - 15px);
-				}
-			}
-		}
-	}
-	&_footer {
-		position: fixed;
-		bottom: 0;
-		width: 100vw;
-		height: 2.8rem;
-		background: #ffffff;
-		color: #000000;
-		font-size: 0.4rem;
-		line-height: 0.7rem;
-		box-sizing: border-box;
-		padding: 0.4rem;
-		ul {
-			li {
-				&:nth-of-type(3) {
-					span {
-						color: rgb(227, 38, 26);
-					}
-				}
-			}
-		}
-	}
-	.am-list-item {
-		padding-left: 0 !important;
-	}
+  display: flex;
+  padding-top: $page-topbar-height;
+  flex-direction: column;
+  min-height: 100%;
+  color: #caa857;
+  background: #f2f5ea url(../../images/deposit/bg-ck.png) no-repeat;
+  background-size: cover;
+  &.game {
+    padding-top: $game-page-topbar-height;
+  }
+  &_nav {
+    width: 100vw;
+    height: 1.45rem;
+    background: #ffffff;
+    &_item {
+      display: inline-block;
+      font-size: 0.36rem;
+      text-align: center;
+      line-height: 1.45rem;
+      position: relative;
+      &::before {
+        content: '';
+        width: 1px;
+        height: 0.55rem;
+        background: rgb(209, 209, 209);
+        position: absolute;
+        right: 0;
+        top: 0.45rem;
+      }
+      &:nth-of-type(1) {
+        width: 2.7rem;
+      }
+      &:nth-of-type(2) {
+        width: 2.7rem;
+      }
+      &:nth-of-type(3) {
+        width: 1.55rem;
+      }
+      &:nth-of-type(4) {
+        width: 1.55rem;
+      }
+      &:nth-of-type(5) {
+        &::before {
+          background: #ffffff;
+        }
+        width: 1.5rem;
+      }
+    }
+  }
+  &_content {
+    margin-top: 0.26rem;
+    background: #ffffff;
+    color: rgb(76, 76, 76);
+    &_item {
+      margin-top: 0.05rem;
+      border-bottom: 1px solid rgb(244, 244, 244);
+      height: 1.12rem;
+      box-sizing: border-box;
+      text-align: center;
+      width: 100vw;
+      display: flex;
+      &_cell {
+        font-size: 0.32rem; // height: 100%;
+        line-height: 0.37rem;
+        vertical-align: middle; // margin-top: 0.16rem;
+        &:nth-of-type(1) {
+          width: calc(2.7rem - 15px);
+        }
+        &:nth-of-type(2) {
+          width: 2.7rem;
+          span {
+            color: rgb(220, 196, 116);
+          }
+        }
+        &:nth-of-type(3) {
+          width: 1.55rem;
+          span {
+            color: rgb(220, 96, 71);
+          }
+        }
+        &:nth-of-type(4) {
+          line-height: 0.74rem;
+          width: 1.55rem;
+        }
+        &:nth-of-type(5) {
+          line-height: 0.74rem;
+          color: rgb(207, 173, 56);
+          &::before {
+            background: #ffffff;
+          }
+          width: calc(1.5rem - 15px);
+        }
+      }
+    }
+  }
+  &_footer {
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    height: 2.8rem;
+    background: #ffffff;
+    color: #000000;
+    font-size: 0.4rem;
+    line-height: 0.7rem;
+    box-sizing: border-box;
+    padding: 0.4rem;
+    ul {
+      li {
+        &:nth-of-type(3) {
+          span {
+            color: rgb(227, 38, 26);
+          }
+        }
+      }
+    }
+  }
+  .am-list-content {
+    border-bottom: 1px solid #000000;
+  }
+  .am-list-item {
+    padding-left: 0 !important;
+  }
 }

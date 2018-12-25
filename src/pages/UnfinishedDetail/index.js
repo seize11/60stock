@@ -13,7 +13,7 @@ import SocketUtils from '../../utils/socket';
 import Link from '../../components/Link';
 import Page from '../../components/Page';
 import MaskNav from '../../components/Play/MaskNav';
-import PlayTopBar from '../../components/Play/PlayTopBar';
+import HeaderBar from '../../components/Play/HeaderBar';
 import { SwipeAction, List, Flex } from 'antd-mobile';
 
 const propTypes = {};
@@ -131,7 +131,7 @@ class UnfinishedDetail extends Component {
 
 		return (
 			<div className={styles.unfinished_detail}>
-				<PlayTopBar
+				<HeaderBar
 					{...this.props}
 					handleClick={() => {
 						this.handleIconClick();
@@ -152,7 +152,13 @@ class UnfinishedDetail extends Component {
 					{defaultProps.list.map((item, index) => {
 						return (
 							<SwipeAction
-								style={{ backgroundColor: 'gray', height: '100%', display: 'flex', height: '1.12rem' }}
+								style={{
+									backgroundColor: 'gray',
+									height: '100%',
+									display: 'flex',
+									height: '1.12rem',
+									borderBottom: '1px solid rgb(244, 244, 244)',
+								}}
 								autoClose
 								right={[
 									{
@@ -181,11 +187,7 @@ class UnfinishedDetail extends Component {
 								onOpen={() => console.log('global open')}
 								onClose={() => console.log('global close')}
 							>
-								<List.Item
-									arrow={false}
-									onClick={() => console.log('List.Item clicked!')}
-									style={{ display: 'flex', height: '1.1rem' }}
-								>
+								<List.Item arrow={false} onClick={() => console.log('List.Item clicked!')}>
 									<div className={styles.unfinished_detail_content_item}>
 										<div className={styles.unfinished_detail_content_item_cell}>
 											{item.time}

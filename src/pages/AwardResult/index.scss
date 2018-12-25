@@ -1,102 +1,147 @@
 .award_result {
-	display: flex;
-	padding-top: $page-topbar-height;
-	flex-direction: column;
-	min-height: 100%;
-	color: #caa857;
-	background: #f2f5ea url(../../images/deposit/bg-ck.png) no-repeat;
-	background-size: cover;
-	&.game {
-		padding-top: $game-page-topbar-height;
-	}
-	&_header {
-		display: flex;
-		text-align: center;
-		line-height: 1.45rem;
-		background: #ffffff;
-		font-size: 0.32rem;
-		color: #000000;
-		&_left,
-		&_right {
-			flex: 1;
-		}
-	}
-	&_thead {
-		height: 1.45rem;
-		background: #ffffff;
-		margin-top: 0.2rem;
-		display: flex;
-		flex-wrap: nowrap;
-		font-size: 0.32rem;
-		color: #000000;
-		text-align: left;
-		box-sizing: border-box;
-		padding: 0.4rem 0;
-		vertical-align: middle;
-		&_td {
-			span {
-				display: inline-block;
-				padding: 0.1rem 0.36rem;
-				border-radius: 0.12rem;
-				background: rgb(125, 125, 125);
-			}
-			&:nth-of-type(1) {
-				text-align: center;
-				line-height: 0.7rem;
-				width: 2rem;
-			}
-			&:nth-of-type(2) {
-				text-align: center;
-				line-height: 0.7rem;
-				padding: 0.01rem 0;
-				width: 1.4rem;
-			}
-			&:nth-of-type(3) {
-				width: 1.7rem;
-			}
-			&:nth-of-type(4) {
-				width: 1.6rem;
-				span {
-					background: rgb(211, 189, 100);
-				}
-			}
-			&:nth-of-type(5) {
-				width: 1.7rem;
-			}
-			&:nth-of-type(6) {
-				width: 2.6rem;
-			}
-		}
-	}
-	&_tbody {
-		margin-top: 0.24rem;
-		background: #ffffff;
-		font-size: 0.12rem;
-		color: #000000;
-		text-align: center;
-		flex-wrap: nowrap;
-		&_tr {
-			padding: 0.2rem 0;
-			display: flex;
-			width: 100%;
-			height: 1rem;
-			border-bottom: 1px solid rgb(248, 244, 245);
-		}
-		&_td {
-			&:nth-of-type(1) {
-				width: 1.8rem;
-			}
-			&:nth-of-type(2) {
-				width: 1.2rem;
-			}
-			width: 0.69rem;
-			span {
-				font-style: italic;
-				display: inline-block;
-				padding: 0.02rem 0.1rem;
-				background: green;
-				border-radius: 0.12rem;
-			}
-		}
-	}
+  display: flex;
+  padding-top: $page-topbar-height;
+  flex-direction: column;
+  min-height: 100%;
+  color: #caa857;
+  background: #f2f5ea url(../../images/deposit/bg-ck.png) no-repeat;
+  background-size: cover;
+  &.game {
+    padding-top: $game-page-topbar-height;
+  }
+  &_header {
+    display: flex;
+    text-align: center;
+    line-height: 1.45rem;
+    background: #ffffff;
+    font-size: 0.4rem;
+    color: rgb(125, 125, 125);
+    &_left,
+    &_right {
+      flex: 1;
+      svg {
+        vertical-align: middle;
+      }
+    }
+  }
+  &_thead {
+    height: 1.45rem;
+    background: #ffffff;
+    margin-top: 0.2rem;
+    display: flex;
+    flex-wrap: nowrap;
+    font-size: 0.32rem;
+    color: #000000;
+    text-align: left;
+    box-sizing: border-box;
+    padding: 0.4rem 0;
+    vertical-align: middle;
+    &_td {
+      span,
+      p {
+        vertical-align: middle;
+        display: inline-block; // padding: 0.1rem 0.36rem;
+        border-radius: 0.12rem;
+        background: rgb(125, 125, 125);
+      }
+      span {
+        color: #ffffff;
+        padding: 0.1rem 0.36rem;
+      }
+      p {
+        padding: 0.1rem 0;
+        background: #ffffff;
+        color: rgb(125, 125, 125);
+      }
+      &:nth-of-type(1) {
+        text-align: center;
+        width: 2rem;
+      }
+      &:nth-of-type(2) {
+        text-align: center;
+        width: 1.4rem;
+      }
+      &:nth-of-type(3) {
+        width: 1.7rem;
+      }
+      &:nth-of-type(4) {
+        width: 1.6rem;
+        span {
+          background: rgb(211, 189, 100);
+        }
+      }
+      &:nth-of-type(5) {
+        width: 1.7rem;
+      }
+      &:nth-of-type(6) {
+        width: 2.6rem;
+      }
+    }
+  }
+  &_tbody {
+    margin-top: 0.24rem;
+    background: #ffffff;
+    font-size: 0.12rem;
+    color: #000000;
+    text-align: center;
+    flex-wrap: nowrap;
+    &_tr {
+      padding: 0.2rem 0;
+      display: flex;
+      width: 100%;
+      height: 1rem;
+      border-bottom: 1px solid rgb(248, 244, 245);
+    }
+    &_td {
+      &:nth-of-type(1) {
+        width: 1.8rem;
+        color: rgb(125, 125, 125);
+      }
+      &:nth-of-type(2) {
+        width: 1.2rem;
+        color: rgb(125, 125, 125);
+      }
+      width: 0.69rem;
+      span {
+        font-style: italic;
+        display: inline-block;
+        padding: 0.02rem 0.15rem;
+        border-radius: 0.12rem;
+        color: #ffffff;
+      }
+    }
+  }
+  .blue {
+    background: rgb(60, 133, 237);
+  }
+  .orange {
+    background: rgb(231, 141, 55);
+  }
+  .red {
+    background: rgb(232, 50, 75);
+  }
+  .green {
+    background: rgb(99, 192, 75);
+  }
+  .orange {
+    background: rgb(236, 104, 45);
+  }
+  .gray {
+    background: rgb(80, 80, 80);
+  }
+  .lightgray {
+    background: rgb(226, 226, 226);
+  }
+  .yellow {
+    background: rgb(244, 244, 80);
+  }
+  .winered {
+    background: rgb(109, 19, 19);
+  }
+  .lightblue {
+    background: rgb(150, 250, 250);
+  }
+  .purple {
+    background: rgb(50, 50, 250);
+  }
 }

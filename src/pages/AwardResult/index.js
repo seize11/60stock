@@ -13,10 +13,141 @@ import SocketUtils from '../../utils/socket';
 import Link from '../../components/Link';
 import Page from '../../components/Page';
 import MaskNav from '../../components/Play/MaskNav';
-import PlayTopBar from '../../components/Play/PlayTopBar';
+import HeaderBar from '../../components/Play/HeaderBar';
 import { DatePicker, Icon } from 'antd-mobile';
-
+import moment from 'moment';
+const nowTimeStamp = Date.now();
+const now = new Date(nowTimeStamp);
 const propTypes = {};
+
+const mockData = [
+	{
+		stage: '123123213',
+		time: '08:18',
+		list: ['大', '大', '大', '小', '小', '小', '小', '小', '大', '大'],
+	},
+	{
+		stage: '123123213',
+		time: '08:18',
+		list: ['大', '大', '大', '小', '小', '小', '小', '小', '大', '大'],
+	},
+	{
+		stage: '123123213',
+		time: '08:18',
+		list: ['大', '大', '大', '小', '小', '小', '小', '小', '大', '大'],
+	},
+	{
+		stage: '123123213',
+		time: '08:18',
+		list: ['大', '大', '大', '小', '小', '小', '小', '小', '大', '大'],
+	},
+	{
+		stage: '123123213',
+		time: '08:18',
+		list: ['大', '大', '大', '小', '小', '小', '小', '小', '大', '大'],
+	},
+	{
+		stage: '123123213',
+		time: '08:18',
+		list: ['大', '大', '大', '小', '小', '小', '小', '小', '大', '大'],
+	},
+	{
+		stage: '123123213',
+		time: '08:18',
+		list: ['大', '大', '大', '小', '小', '小', '小', '小', '大', '大'],
+	},
+	{
+		stage: '123123213',
+		time: '08:18',
+		list: ['大', '大', '大', '小', '小', '小', '小', '小', '大', '大'],
+	},
+];
+
+const mockData1 = [
+	{
+		stage: '123123213',
+		time: '08:18',
+		list: ['10', '6', '9', '1', '3', '2', '5', '4', '7', '8'],
+	},
+	{
+		stage: '123123213',
+		time: '08:18',
+		list: ['10', '6', '9', '1', '3', '2', '5', '4', '7', '8'],
+	},
+	{
+		stage: '123123213',
+		time: '08:18',
+		list: ['10', '6', '9', '1', '3', '2', '5', '4', '7', '8'],
+	},
+	{
+		stage: '123123213',
+		time: '08:18',
+		list: ['10', '6', '9', '1', '3', '2', '5', '4', '7', '8'],
+	},
+	{
+		stage: '123123213',
+		time: '08:18',
+		list: ['10', '6', '9', '1', '3', '2', '5', '4', '7', '8'],
+	},
+	{
+		stage: '123123213',
+		time: '08:18',
+		list: ['10', '6', '9', '1', '3', '2', '5', '4', '7', '8'],
+	},
+	{
+		stage: '123123213',
+		time: '08:18',
+		list: ['10', '6', '9', '1', '3', '2', '5', '4', '7', '8'],
+	},
+	{
+		stage: '123123213',
+		time: '08:18',
+		list: ['10', '6', '9', '1', '3', '2', '5', '4', '7', '8'],
+	},
+];
+
+const mockData3 = [
+	{
+		stage: '123123213',
+		time: '08:18',
+		list: ['单', '单', '双', '双', '双', '双', '双', '单', '单', '单'],
+	},
+	{
+		stage: '123123213',
+		time: '08:18',
+		list: ['单', '单', '双', '双', '双', '双', '双', '单', '单', '单'],
+	},
+	{
+		stage: '123123213',
+		time: '08:18',
+		list: ['单', '单', '双', '双', '双', '双', '双', '单', '单', '单'],
+	},
+	{
+		stage: '123123213',
+		time: '08:18',
+		list: ['单', '单', '双', '双', '双', '双', '双', '单', '单', '单'],
+	},
+	{
+		stage: '123123213',
+		time: '08:18',
+		list: ['单', '单', '双', '双', '双', '双', '双', '单', '单', '单'],
+	},
+	{
+		stage: '123123213',
+		time: '08:18',
+		list: ['单', '单', '双', '双', '双', '双', '双', '单', '单', '单'],
+	},
+	{
+		stage: '123123213',
+		time: '08:18',
+		list: ['单', '单', '双', '双', '双', '双', '双', '单', '单', '单'],
+	},
+	{
+		stage: '123123213',
+		time: '08:18',
+		list: ['单', '单', '双', '双', '双', '双', '双', '单', '单', '单'],
+	},
+];
 
 const defaultProps = {
 	leftContent: '北京赛车(PK10)',
@@ -25,7 +156,7 @@ const defaultProps = {
 class AwardResult extends Component {
 	constructor(props) {
 		super(props);
-		this.state = { isShow: false, date: new Date() };
+		this.state = { isShow: false, date: now, type: 'num' }; // 十二月 24日 2018, 9:20:50 晚上
 	}
 
 	componentDidMount() {}
@@ -54,13 +185,16 @@ class AwardResult extends Component {
 		// });
 	};
 	renderTopBarContent = () => <div>存款</div>;
+	showType = type => {
+		this.setState({ type });
+	};
 
 	render() {
 		const { userName, balance, table, leftContent } = this.props;
 
 		return (
 			<div className={styles.award_result}>
-				<PlayTopBar
+				<HeaderBar
 					{...this.props}
 					handleClick={() => {
 						this.handleIconClick();
@@ -78,69 +212,118 @@ class AwardResult extends Component {
 						<DatePicker
 							mode="date"
 							format="YYYY:MM:DD"
-							value={this.state.customChildValue}
-							onChange={v => this.setState({ customChildValue: v })}
+							value={this.state.date}
+							onChange={v => {
+								console.log(v);
+								this.setState({ date: v });
+							}}
 							extra="click to choose"
 						>
 							<span>
-								2018-12-16
+								{moment(this.state.date).format('YYYY-MM-DD')}
 								<Icon type="right" />
 							</span>
 						</DatePicker>
 					</div>
 				</div>
 				<div className={styles.award_result_thead}>
-					<div className={styles.award_result_thead_td}>期数</div>
-					<div className={styles.award_result_thead_td}>时间</div>
 					<div className={styles.award_result_thead_td}>
-						<span>号码</span>{' '}
+						<p>期数</p>
 					</div>
 					<div className={styles.award_result_thead_td}>
-						<span>大小</span>
+						<p>时间</p>
 					</div>
 					<div className={styles.award_result_thead_td}>
-						<span>单双</span>
+						<span
+							onClick={() => {
+								this.showType('num');
+							}}
+						>
+							号码
+						</span>{' '}
 					</div>
 					<div className={styles.award_result_thead_td}>
-						<span>冠亚/龙虎</span>
+						<span
+							onClick={() => {
+								this.showType('size');
+							}}
+						>
+							大小
+						</span>
+					</div>
+					<div className={styles.award_result_thead_td}>
+						<span
+							onClick={() => {
+								this.showType('double');
+							}}
+						>
+							单双
+						</span>
+					</div>
+					<div className={styles.award_result_thead_td}>
+						<span
+							onClick={() => {
+								this.showType('dragon');
+							}}
+						>
+							冠亚/龙虎
+						</span>
 					</div>
 				</div>
 				<div className={styles.award_result_tbody}>
-					{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16].map(() => {
+					{mockData1.map((item, index) => {
 						return (
-							<div className={styles.award_result_tbody_tr}>
-								<div className={styles.award_result_tbody_td}>123456789</div>
-								<div className={styles.award_result_tbody_td}>14:34</div>
+							<div className={styles.award_result_tbody_tr} key={index}>
 								<div className={styles.award_result_tbody_td}>
-									<span>大</span>
+									<p>{item.stage}</p>
 								</div>
 								<div className={styles.award_result_tbody_td}>
-									<span>大</span>
+									<p>{item.time}</p>
 								</div>
-								<div className={styles.award_result_tbody_td}>
-									<span>大</span>
-								</div>
-								<div className={styles.award_result_tbody_td}>
-									<span>小</span>
-								</div>
-								<div className={styles.award_result_tbody_td}>
-									<span>小</span>
-								</div>
-								<div className={styles.award_result_tbody_td}>
-									<span>小</span>
-								</div>
-								<div className={styles.award_result_tbody_td}>
-									<span>小</span>
-								</div>
-								<div className={styles.award_result_tbody_td}>
-									<span>小</span>
-								</div>
-								<div className={styles.award_result_tbody_td}>
-									<span>大</span>
-								</div>
-								<div className={styles.award_result_tbody_td}>
-									<span>大</span>
-								</div>
+								{item.list.map((item, index) => {
+									let style;
+									switch (item) {
+										case '1':
+											style = styles.yellow;
+											break;
+										case '2':
+											style = styles.blue;
+											break;
+										case '3':
+											style = styles.gray;
+											break;
+										case '4':
+											style = styles.orange;
+											break;
+										case '5':
+											style = styles.lightblue;
+											break;
+										case '6':
+											style = styles.purple;
+											break;
+										case '7':
+											style = styles.lightgray;
+											break;
+										case '8':
+											style = styles.red;
+											break;
+										case '9':
+											style = styles.winered;
+											break;
+										case '10':
+											style = styles.green;
+											break;
+										default:
+											style = styles.blue;
+											break;
+									}
+
+									return (
+										<div className={styles.award_result_tbody_td} key={index}>
+											<span className={style}>{item}</span>
+										</div>
+									);
+								})}
 							</div>
 						);
 					})}
