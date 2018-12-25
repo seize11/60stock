@@ -19,7 +19,25 @@ import moment from 'moment';
 const nowTimeStamp = Date.now();
 const now = new Date(nowTimeStamp);
 const propTypes = {};
+const colorConfig = {
+	1: 'yellow',
+	2: 'blue',
+	3: 'gray',
+	4: 'orange',
+	5: 'lightblue',
+	6: 'purple',
+	7: 'lightgray',
+	8: 'red',
+	9: 'winered',
+	10: 'green',
+};
 
+const headConfig = [
+	{ type: 'num', name: '号码' },
+	{ type: 'size', name: '大小' },
+	{ type: 'double', name: '单双' },
+	{ type: 'dragon', name: '冠亚/龙虎' },
+];
 const mockData = [
 	{
 		stage: '123123213',
@@ -106,7 +124,7 @@ const mockData1 = [
 	},
 ];
 
-const mockData3 = [
+const mockData2 = [
 	{
 		stage: '123123213',
 		time: '08:18',
@@ -149,6 +167,49 @@ const mockData3 = [
 	},
 ];
 
+const mockData3 = [
+	{
+		stage: '123123213',
+		time: '08:18',
+		list: ['11', '单', '双', '双', '双', '双', '单', '单'],
+	},
+	{
+		stage: '123123213',
+		time: '08:18',
+		list: ['11', '单', '双', '双', '双', '双', '单', '单'],
+	},
+	{
+		stage: '123123213',
+		time: '08:18',
+		list: ['11', '单', '双', '双', '双', '双', '单', '单'],
+	},
+	{
+		stage: '123123213',
+		time: '08:18',
+		list: ['11', '单', '双', '双', '双', '双', '单', '单'],
+	},
+	{
+		stage: '123123213',
+		time: '08:18',
+		list: ['11', '单', '双', '双', '双', '双', '单', '单'],
+	},
+	{
+		stage: '123123213',
+		time: '08:18',
+		list: ['11', '单', '双', '双', '双', '双', '单', '单'],
+	},
+	{
+		stage: '123123213',
+		time: '08:18',
+		list: ['11', '单', '双', '双', '双', '双', '单', '单'],
+	},
+	{
+		stage: '123123213',
+		time: '08:18',
+		list: ['11', '单', '双', '双', '双', '双', '单', '单'],
+	},
+];
+
 const defaultProps = {
 	leftContent: '北京赛车(PK10)',
 };
@@ -156,7 +217,7 @@ const defaultProps = {
 class AwardResult extends Component {
 	constructor(props) {
 		super(props);
-		this.state = { isShow: false, date: now, type: 'num' }; // 十二月 24日 2018, 9:20:50 晚上
+		this.state = { isShow: false, date: now, type: 'num', activeKey: 0, mockData: mockData1 }; // 十二月 24日 2018, 9:20:50 晚上
 	}
 
 	componentDidMount() {}
@@ -170,23 +231,16 @@ class AwardResult extends Component {
 	handleExit() {
 		this.setState({ show: false });
 	}
-
-	handleSocketData = res => {
-		// const { base,  {
-		//   return;
-		// }updateTableDataAction } = this.props;
-		// const { fastType, gameType } = getURLParamsObject();
-		// if (!base.wsKey)
-		// const data = JSON.parse(decrypt(res, base.wsKey));
-		// updateTableDataAction({
-		//   fastType,
-		//   gameType,
-		//   data
-		// });
-	};
-	renderTopBarContent = () => <div>存款</div>;
-	showType = type => {
-		this.setState({ type });
+	showType = (type, key) => {
+		if (key === 0) {
+			this.setState({ type, activeKey: key, mockData: mockData1 });
+		} else if (key === 1) {
+			this.setState({ type, activeKey: key, mockData: mockData });
+		} else if (key === 2) {
+			this.setState({ type, activeKey: key, mockData: mockData2 });
+		} else {
+			this.setState({ type, activeKey: key, mockData: mockData3 });
+		}
 	};
 
 	render() {
@@ -201,6 +255,7 @@ class AwardResult extends Component {
 					}}
 				/>
 				<MaskNav
+					{...this.props}
 					isShow={this.state.show}
 					handleExit={() => {
 						this.handleExit();
@@ -233,45 +288,23 @@ class AwardResult extends Component {
 					<div className={styles.award_result_thead_td}>
 						<p>时间</p>
 					</div>
-					<div className={styles.award_result_thead_td}>
-						<span
-							onClick={() => {
-								this.showType('num');
-							}}
-						>
-							号码
-						</span>{' '}
-					</div>
-					<div className={styles.award_result_thead_td}>
-						<span
-							onClick={() => {
-								this.showType('size');
-							}}
-						>
-							大小
-						</span>
-					</div>
-					<div className={styles.award_result_thead_td}>
-						<span
-							onClick={() => {
-								this.showType('double');
-							}}
-						>
-							单双
-						</span>
-					</div>
-					<div className={styles.award_result_thead_td}>
-						<span
-							onClick={() => {
-								this.showType('dragon');
-							}}
-						>
-							冠亚/龙虎
-						</span>
-					</div>
+					{headConfig.map((item, index) => {
+						return (
+							<div className={styles.award_result_thead_td}>
+								<span
+									className={index === this.state.activeKey ? styles.thead_yellow : ''}
+									onClick={() => {
+										this.showType(item.type, index);
+									}}
+								>
+									{item.name}
+								</span>
+							</div>
+						);
+					})}
 				</div>
 				<div className={styles.award_result_tbody}>
-					{mockData1.map((item, index) => {
+					{this.state.mockData.map((item, index) => {
 						return (
 							<div className={styles.award_result_tbody_tr} key={index}>
 								<div className={styles.award_result_tbody_td}>
@@ -281,46 +314,19 @@ class AwardResult extends Component {
 									<p>{item.time}</p>
 								</div>
 								{item.list.map((item, index) => {
-									let style;
-									switch (item) {
-										case '1':
-											style = styles.yellow;
-											break;
-										case '2':
-											style = styles.blue;
-											break;
-										case '3':
-											style = styles.gray;
-											break;
-										case '4':
-											style = styles.orange;
-											break;
-										case '5':
-											style = styles.lightblue;
-											break;
-										case '6':
-											style = styles.purple;
-											break;
-										case '7':
-											style = styles.lightgray;
-											break;
-										case '8':
-											style = styles.red;
-											break;
-										case '9':
-											style = styles.winered;
-											break;
-										case '10':
-											style = styles.green;
-											break;
-										default:
-											style = styles.blue;
-											break;
-									}
-
 									return (
 										<div className={styles.award_result_tbody_td} key={index}>
-											<span className={style}>{item}</span>
+											<span
+												className={
+													this.state.activeKey === 0
+														? styles[colorConfig[item]] + ' ' + styles.gray_side
+														: item === '单' || item === '大'
+														? styles.blue
+														: styles.orange
+												}
+											>
+												{item}
+											</span>
 										</div>
 									);
 								})}

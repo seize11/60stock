@@ -138,6 +138,7 @@ class UnfinishedDetail extends Component {
 					}}
 				/>
 				<MaskNav
+					{...this.props}
 					isShow={this.state.show}
 					handleExit={() => {
 						this.handleExit();
