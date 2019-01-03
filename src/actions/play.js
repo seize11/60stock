@@ -6,6 +6,8 @@ import {
 	GET_TOTAL_LIST,
 	GET_UNFINISHED_DETAIL,
 	UNFINISHED_DETAIL,
+	GET_AWARD_RESULT,
+	DELETE_UNFINISHED_DETAIL,
 } from '../constants/api';
 
 export function getToatalList(success, error) {
@@ -50,7 +52,39 @@ export function getUnfinishedDetail(success, error) {
 			types: [
 				actionTypes.GET_UNFINISHED_DETAIL_REQUEST,
 				actionTypes.GET_UNFINISHED_DETAIL_SUCCESS,
-				actionTypes.GET_GET_UNFINISHED_DETAIL_FAILURE,
+				actionTypes.GET_UNFINISHED_DETAIL_FAILURE,
+			],
+			success,
+			error,
+		},
+	};
+}
+
+export function getAwardResult(success, error) {
+	return {
+		[CALL_API]: {
+			url: GET_AWARD_RESULT,
+			method: 'post',
+			types: [
+				actionTypes.GET_AWARD_RESULT_REQUEST,
+				actionTypes.GET_AWARD_RESULT_SUCCESS,
+				actionTypes.GET_AWARD_RESULT_FAILURE,
+			],
+			success,
+			error,
+		},
+	};
+}
+
+export function deleteUnfinishedResult(success, error) {
+	return {
+		[CALL_API]: {
+			url: DELETE_UNFINISHED_DETAIL,
+			method: 'post',
+			types: [
+				actionTypes.DELETE_UNFINISHED_DETAIL_REQUEST,
+				actionTypes.DELETE_UNFINISHED_DETAIL_SUCCESS,
+				actionTypes.DELETE_UNFINISHED_DETAIL_FAILURE,
 			],
 			success,
 			error,

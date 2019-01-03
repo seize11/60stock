@@ -8,7 +8,7 @@ import PearlRoad from '../../components/PearlRoad';
 import BigRoad from '../../components/BigRoad';
 import { decrypt } from '../../utils/info';
 import { getURLParamsObject } from '../../utils/url';
-import { getTableInitData, updateTableData } from '../../actions/table';
+import { getAwardResult } from '../../actions/play';
 import SocketUtils from '../../utils/socket';
 import Link from '../../components/Link';
 import Page from '../../components/Page';
@@ -220,7 +220,9 @@ class AwardResult extends Component {
 		this.state = { isShow: false, date: now, type: 'num', activeKey: 0, mockData: mockData1 }; // 十二月 24日 2018, 9:20:50 晚上
 	}
 
-	componentDidMount() {}
+	componentDidMount() {
+		this.props.getAwardResultAction();
+	}
 
 	componentWillUnmount() {
 		SocketUtils.unsubscribe();
@@ -342,4 +344,11 @@ class AwardResult extends Component {
 AwardResult.propTypes = propTypes;
 AwardResult.defaultProps = defaultProps;
 
-export default connect()(AwardResult);
+export default connect(
+	state => ({
+		awardResult: state.awardResult,
+	}),
+	{
+		getAwardResultAction: getAwardResult,
+	}
+)(AwardResult);

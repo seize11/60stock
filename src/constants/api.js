@@ -59,3 +59,5 @@ export const GET_TOTAL_LIST = '/lottery/menu/1';
 
 // 获取未结详情
 export const GET_UNFINISHED_DETAIL = '/lottery/bet/processing';
+
+export const GET_AWARD_RESULT = '/lottery/open/list';

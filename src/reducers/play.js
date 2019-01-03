@@ -4,6 +4,7 @@ const initialState = {
 	selectIds: [],
 	totalList: [],
 	unfinishedDetail: [],
+	awardResult: [],
 };
 
 export default function playProps(state = initialState, action = {}) {
@@ -26,8 +27,23 @@ export default function playProps(state = initialState, action = {}) {
 			return { ...state };
 		// loadingState: LOADING_STATE.BEGIN
 		case actionTypes.GET_UNFINISHED_DETAIL_SUCCESS:
+			console.log(action);
 			return { ...state, unfinishedDetail: payload };
 		// loadingState: LOADING_STATE.SUCCESS
+
+		case actionTypes.GET_AWARD_RESULT_REQUEST:
+			return { ...state };
+		// loadingState: LOADING_STATE.BEGIN
+		case actionTypes.GET_AWARD_RESULT_SUCCESS:
+			console.log(action);
+			return { ...state, awardResult: payload };
+
+		case actionTypes.DELETE_UNFINISHED_DETAIL_REQUEST:
+			return { ...state };
+
+		case actionTypes.DELETE_UNFINISHED_DETAIL_SUCCESS:
+			console.log(action);
+			return { ...state, deleteResult: payload };
 		default:
 	}
 	return state;
