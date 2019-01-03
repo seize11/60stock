@@ -85,7 +85,9 @@ class Period extends Component {
     return (
       <div className={styles.period}>
         <div className={styles.number}>
-          <span className={styles.number_first}>243424 期</span>
+          <span className={styles.number_first}>
+            {this.props.lottery_info.lastExpect} 期
+          </span>
           <span className={styles.number_second}>
             {numberList.map((item, index) => (
               <span style={numberStyle(index)} key={index}>
@@ -95,7 +97,10 @@ class Period extends Component {
           </span>
         </div>
         <div className={styles.timing}>
-          <span className={styles.timing_first}>243424 期</span>
+          <span className={styles.timing_first}>
+            {" "}
+            {this.props.lottery_info.expect} 期
+          </span>
           <span className={styles.timing_second}>
             封盘:
             <span className={styles.secondInterval}>

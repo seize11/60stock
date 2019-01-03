@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import History from "../../../utils/history";
+import { connect } from "react-redux";
 
 import styles from "./PopUpSelectResults.scss";
 import SelfModal from "../SelfModal";
 import { Checkbox, Icon, Grid, SwipeAction, Modal } from "antd-mobile";
+import { gobet } from "../../../../src/actions/play";
 
 const CheckboxItem = Checkbox.CheckboxItem;
 const operation = Modal.operation;
@@ -84,6 +86,19 @@ class PopUpSelectResults extends Component {
   };
   isShowModal = () => {
     this.setState({ isShowModal: !this.state.isShowModal });
+    //待确定code
+    console.log(this.props);
+    let selectLoterry = this.props.changeSelectPops.map(item => {
+      return { code: item, amount: this.state.baseAmount };
+    });
+    console.log("object :", selectLoterry);
+    let data = {
+      lotteryId: 1,
+      expect: this.props.lottery_info.expect,
+      betDetails: selectLoterry
+    };
+    console.log("object2 :", data);
+    this.props.gobet(data);
   };
 
   render() {
@@ -221,4 +236,21 @@ class PopUpSelectResults extends Component {
 PopUpSelectResults.propTypes = propTypes;
 PopUpSelectResults.defaultProps = defaultProps;
 
-export default PopUpSelectResults;
+export default connect(
+  state => {
+    console.log(state, "*********");
+    return {
+      base: state.base,
+      userName: state.user.name,
+      balance: state.account.balance,
+      table: state.table,
+      changeSelectPops: state.play.selectIds,
+      getTotalList: state.play.totalList,
+      lottery_info: state.play.lottery_info,
+      gobetinfo: state.play.gobetinfo
+    };
+  },
+  {
+    gobet
+  }
+)(PopUpSelectResults);

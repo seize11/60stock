@@ -4,10 +4,10 @@ import { BASE_ROUTE } from "../constants/env";
 export function getRoute(path) {
   return BASE_ROUTE + path;
 }
-export const socketHost = USE_LOCAL
-  ? "http://zyy.s3.natapp.cc/ws"
-  : "http://wf0101.com/wf/ws";
-
+// export const socketHost = USE_LOCAL
+//   ? "http://zyy.s3.natapp.cc/ws"
+//   : "http://wf0101.com/wf/ws";
+export const socketHost = "http://www.wanfengtest.com/wf/ws";
 /* global window document */
 /**
  * 拼接对象为请求字符串
@@ -61,7 +61,8 @@ export function getPrefix() {
   const prodHost = "http://wf0101.com/wf/api";
   // const statgeHost = 'http://47.106.205.151/wf/api';
   const statgeHost = "http://wf0101.com/wf/api";
-  const localHost = "http://zyy.s3.natapp.cc/api";
+  // const localHost = "http://zyy.s3.natapp.cc/api";
+  const localHost = "http://www.wanfengtest.com/wf/api";
   const preHost = isProd ? prodHost : statgeHost;
   if (USE_LOCAL) {
     return localHost;

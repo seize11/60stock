@@ -8,6 +8,8 @@ import {
 	UNFINISHED_DETAIL,
 	GET_AWARD_RESULT,
 	DELETE_UNFINISHED_DETAIL,
+	GET_LOTTERY_INFO,
+	GO_BET,
 } from '../constants/api';
 
 export function getToatalList(success, error) {
@@ -20,6 +22,33 @@ export function getToatalList(success, error) {
 				actionTypes.GET_TOTAL_LIST_SUCCESS,
 				actionTypes.GET_TOTAL_LIST_FAILURE,
 			],
+			success,
+			error,
+		},
+	};
+}
+export function get_lottery_info(success, error) {
+	return {
+		[CALL_API]: {
+			url: GET_LOTTERY_INFO,
+			method: 'post',
+			types: [
+				actionTypes.GET_LOTTERY_INFO_REQUEST,
+				actionTypes.GET_LOTTERY_INFO_SUCCESS,
+				actionTypes.GET_LOTTERY_INFO_FAILURE,
+			],
+			success,
+			error,
+		},
+	};
+}
+export function gobet(data, success, error) {
+	return {
+		[CALL_API]: {
+			url: GO_BET,
+			method: 'post',
+			data,
+			types: [actionTypes.GO_BET_REQUEST, actionTypes.GO_BET_SUCCESS, actionTypes.GO_BET_FAILURE],
 			success,
 			error,
 		},
