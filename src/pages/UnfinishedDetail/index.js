@@ -8,7 +8,7 @@ import PearlRoad from '../../components/PearlRoad';
 import BigRoad from '../../components/BigRoad';
 import { decrypt } from '../../utils/info';
 import { getURLParamsObject } from '../../utils/url';
-import { getTableInitData, updateTableData } from '../../actions/table';
+import { getUnfinishedDetail } from '../../actions/play';
 import SocketUtils from '../../utils/socket';
 import Link from '../../components/Link';
 import Page from '../../components/Page';
@@ -99,7 +99,9 @@ class UnfinishedDetail extends Component {
 		};
 	}
 
-	componentDidMount() {}
+	componentDidMount() {
+		this.props.getUnfinishedDetailAction();
+	}
 
 	componentWillUnmount() {
 		SocketUtils.unsubscribe();
@@ -230,13 +232,9 @@ UnfinishedDetail.defaultProps = defaultProps;
 
 export default connect(
 	state => ({
-		base: state.base,
-		userName: state.user.name,
-		balance: state.account.balance,
-		table: state.table,
+		unfinishedDetail: state.unfinishedDetail,
 	}),
 	{
-		getTableInitDataAction: getTableInitData,
-		updateTableDataAction: updateTableData,
+		getUnfinishedDetailAction: getUnfinishedDetail,
 	}
 )(UnfinishedDetail);
