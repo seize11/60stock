@@ -232,7 +232,7 @@ UnfinishedDetail.defaultProps = defaultProps;
 
 export default connect(
 	state => ({
-		unfinishedDetail: state.unfinishedDetail,
+		unfinishedDetail: state.play.unfinishedDetail,
 	}),
 	{
 		getUnfinishedDetailAction: getUnfinishedDetail,

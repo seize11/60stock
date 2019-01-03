@@ -89,11 +89,12 @@ export function getUnfinishedDetail(success, error) {
 	};
 }
 
-export function getAwardResult(success, error) {
+export function getAwardResult(data, success, error) {
 	return {
 		[CALL_API]: {
 			url: GET_AWARD_RESULT,
 			method: 'post',
+			data,
 			types: [
 				actionTypes.GET_AWARD_RESULT_REQUEST,
 				actionTypes.GET_AWARD_RESULT_SUCCESS,

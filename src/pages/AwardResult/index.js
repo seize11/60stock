@@ -8,13 +8,14 @@ import PearlRoad from '../../components/PearlRoad';
 import BigRoad from '../../components/BigRoad';
 import { decrypt } from '../../utils/info';
 import { getURLParamsObject } from '../../utils/url';
-import { getAwardResult } from '../../actions/play';
+import { getAwardResult, getToatalList } from '../../actions/play';
 import SocketUtils from '../../utils/socket';
 import Link from '../../components/Link';
 import Page from '../../components/Page';
 import MaskNav from '../../components/Play/MaskNav';
 import HeaderBar from '../../components/Play/HeaderBar';
-import { DatePicker, Icon } from 'antd-mobile';
+import { DatePicker, Icon, Toast } from 'antd-mobile';
+import dateImage from '../../images/agent/date.png';
 import moment from 'moment';
 const nowTimeStamp = Date.now();
 const now = new Date(nowTimeStamp);
@@ -38,177 +39,6 @@ const headConfig = [
 	{ type: 'double', name: '单双' },
 	{ type: 'dragon', name: '冠亚/龙虎' },
 ];
-const mockData = [
-	{
-		stage: '123123213',
-		time: '08:18',
-		list: ['大', '大', '大', '小', '小', '小', '小', '小', '大', '大'],
-	},
-	{
-		stage: '123123213',
-		time: '08:18',
-		list: ['大', '大', '大', '小', '小', '小', '小', '小', '大', '大'],
-	},
-	{
-		stage: '123123213',
-		time: '08:18',
-		list: ['大', '大', '大', '小', '小', '小', '小', '小', '大', '大'],
-	},
-	{
-		stage: '123123213',
-		time: '08:18',
-		list: ['大', '大', '大', '小', '小', '小', '小', '小', '大', '大'],
-	},
-	{
-		stage: '123123213',
-		time: '08:18',
-		list: ['大', '大', '大', '小', '小', '小', '小', '小', '大', '大'],
-	},
-	{
-		stage: '123123213',
-		time: '08:18',
-		list: ['大', '大', '大', '小', '小', '小', '小', '小', '大', '大'],
-	},
-	{
-		stage: '123123213',
-		time: '08:18',
-		list: ['大', '大', '大', '小', '小', '小', '小', '小', '大', '大'],
-	},
-	{
-		stage: '123123213',
-		time: '08:18',
-		list: ['大', '大', '大', '小', '小', '小', '小', '小', '大', '大'],
-	},
-];
-
-const mockData1 = [
-	{
-		stage: '123123213',
-		time: '08:18',
-		list: ['10', '6', '9', '1', '3', '2', '5', '4', '7', '8'],
-	},
-	{
-		stage: '123123213',
-		time: '08:18',
-		list: ['10', '6', '9', '1', '3', '2', '5', '4', '7', '8'],
-	},
-	{
-		stage: '123123213',
-		time: '08:18',
-		list: ['10', '6', '9', '1', '3', '2', '5', '4', '7', '8'],
-	},
-	{
-		stage: '123123213',
-		time: '08:18',
-		list: ['10', '6', '9', '1', '3', '2', '5', '4', '7', '8'],
-	},
-	{
-		stage: '123123213',
-		time: '08:18',
-		list: ['10', '6', '9', '1', '3', '2', '5', '4', '7', '8'],
-	},
-	{
-		stage: '123123213',
-		time: '08:18',
-		list: ['10', '6', '9', '1', '3', '2', '5', '4', '7', '8'],
-	},
-	{
-		stage: '123123213',
-		time: '08:18',
-		list: ['10', '6', '9', '1', '3', '2', '5', '4', '7', '8'],
-	},
-	{
-		stage: '123123213',
-		time: '08:18',
-		list: ['10', '6', '9', '1', '3', '2', '5', '4', '7', '8'],
-	},
-];
-
-const mockData2 = [
-	{
-		stage: '123123213',
-		time: '08:18',
-		list: ['单', '单', '双', '双', '双', '双', '双', '单', '单', '单'],
-	},
-	{
-		stage: '123123213',
-		time: '08:18',
-		list: ['单', '单', '双', '双', '双', '双', '双', '单', '单', '单'],
-	},
-	{
-		stage: '123123213',
-		time: '08:18',
-		list: ['单', '单', '双', '双', '双', '双', '双', '单', '单', '单'],
-	},
-	{
-		stage: '123123213',
-		time: '08:18',
-		list: ['单', '单', '双', '双', '双', '双', '双', '单', '单', '单'],
-	},
-	{
-		stage: '123123213',
-		time: '08:18',
-		list: ['单', '单', '双', '双', '双', '双', '双', '单', '单', '单'],
-	},
-	{
-		stage: '123123213',
-		time: '08:18',
-		list: ['单', '单', '双', '双', '双', '双', '双', '单', '单', '单'],
-	},
-	{
-		stage: '123123213',
-		time: '08:18',
-		list: ['单', '单', '双', '双', '双', '双', '双', '单', '单', '单'],
-	},
-	{
-		stage: '123123213',
-		time: '08:18',
-		list: ['单', '单', '双', '双', '双', '双', '双', '单', '单', '单'],
-	},
-];
-
-const mockData3 = [
-	{
-		stage: '123123213',
-		time: '08:18',
-		list: ['11', '单', '双', '双', '双', '双', '单', '单'],
-	},
-	{
-		stage: '123123213',
-		time: '08:18',
-		list: ['11', '单', '双', '双', '双', '双', '单', '单'],
-	},
-	{
-		stage: '123123213',
-		time: '08:18',
-		list: ['11', '单', '双', '双', '双', '双', '单', '单'],
-	},
-	{
-		stage: '123123213',
-		time: '08:18',
-		list: ['11', '单', '双', '双', '双', '双', '单', '单'],
-	},
-	{
-		stage: '123123213',
-		time: '08:18',
-		list: ['11', '单', '双', '双', '双', '双', '单', '单'],
-	},
-	{
-		stage: '123123213',
-		time: '08:18',
-		list: ['11', '单', '双', '双', '双', '双', '单', '单'],
-	},
-	{
-		stage: '123123213',
-		time: '08:18',
-		list: ['11', '单', '双', '双', '双', '双', '单', '单'],
-	},
-	{
-		stage: '123123213',
-		time: '08:18',
-		list: ['11', '单', '双', '双', '双', '双', '单', '单'],
-	},
-];
 
 const defaultProps = {
 	leftContent: '北京赛车(PK10)',
@@ -217,11 +47,21 @@ const defaultProps = {
 class AwardResult extends Component {
 	constructor(props) {
 		super(props);
-		this.state = { isShow: false, date: now, type: 'num', activeKey: 0, mockData: mockData1 }; // 十二月 24日 2018, 9:20:50 晚上
+		this.state = { isShow: false, date: now, type: 'num', activeKey: 0 }; // 十二月 24日 2018, 9:20:50 晚上
 	}
 
 	componentDidMount() {
-		this.props.getAwardResultAction();
+		Toast.loading('加载中', 0, null, true);
+		this.props
+			.getAwardResultAction({ lotteryId: 1, date: moment(new Date()).format('YYYY-MM-DD') })
+			.then(() => {
+				setTimeout(() => {
+					Toast.hide();
+				}, 300);
+			})
+			.catch(() => {
+				alert('请求出错!');
+			});
 	}
 
 	componentWillUnmount() {
@@ -233,19 +73,35 @@ class AwardResult extends Component {
 	handleExit() {
 		this.setState({ show: false });
 	}
+
+	componentWillReceiveProps(nextProps) {
+		if (nextProps.loading) {
+		}
+	}
 	showType = (type, key) => {
 		if (key === 0) {
-			this.setState({ type, activeKey: key, mockData: mockData1 });
+			this.setState({ type, activeKey: key });
 		} else if (key === 1) {
-			this.setState({ type, activeKey: key, mockData: mockData });
+			this.setState({ type, activeKey: key });
 		} else if (key === 2) {
-			this.setState({ type, activeKey: key, mockData: mockData2 });
+			this.setState({ type, activeKey: key });
 		} else {
-			this.setState({ type, activeKey: key, mockData: mockData3 });
+			this.setState({ type, activeKey: key });
 		}
 	};
 
+	handleDateChange(v) {
+		this.setState({ date: v });
+		Toast.loading('加载中', null, null, true);
+		this.props.getAwardResultAction({ lotteryId: 1, date: moment(v).format('YYYY-MM-DD') }).then(() => {
+			setTimeout(() => {
+				Toast.hide();
+			}, 300);
+		});
+	}
+
 	render() {
+		console.log(this.props);
 		const { userName, balance, table, leftContent } = this.props;
 
 		return (
@@ -271,14 +127,13 @@ class AwardResult extends Component {
 							format="YYYY:MM:DD"
 							value={this.state.date}
 							onChange={v => {
-								console.log(v);
-								this.setState({ date: v });
+								this.handleDateChange(v);
 							}}
 							extra="click to choose"
 						>
 							<span>
 								{moment(this.state.date).format('YYYY-MM-DD')}
-								<Icon type="right" />
+								<img src={dateImage} alt="" style={{ width: '0.4rem', verticalAlign: '-3%',marginLeft:'0.2rem' }} />
 							</span>
 						</DatePicker>
 					</div>
@@ -305,32 +160,95 @@ class AwardResult extends Component {
 						);
 					})}
 				</div>
+				{!this.props.awardResult.length && !this.props.loading ? (
+					<span style={{ margin: '2rem auto' }}>暂无数据</span>
+				) : null}
+				<div />
 				<div className={styles.award_result_tbody}>
-					{this.state.mockData.map((item, index) => {
+					{this.props.awardResult.map((item, index) => {
+						let data = [];
+						if (this.state.activeKey === 0) {
+							data = item.openCode.split(',');
+						} else if (this.state.activeKey === 1) {
+							data = item.smallOrBig.split(',');
+						} else if (this.state.activeKey === 2) {
+							data = item.singleOrDouble.split(',');
+						} else {
+							data = item.dragonOrTiger.split(',');
+						}
 						return (
 							<div className={styles.award_result_tbody_tr} key={index}>
 								<div className={styles.award_result_tbody_td}>
-									<p>{item.stage}</p>
+									<p>{item.expect}</p>
 								</div>
 								<div className={styles.award_result_tbody_td}>
-									<p>{item.time}</p>
+									<p>{item.gyNum}</p>
 								</div>
-								{item.list.map((item, index) => {
-									return (
-										<div className={styles.award_result_tbody_td} key={index}>
-											<span
-												className={
-													this.state.activeKey === 0
-														? styles[colorConfig[item]] + ' ' + styles.gray_side
-														: item === '单' || item === '大'
-														? styles.blue
-														: styles.orange
-												}
-											>
-												{item}
-											</span>
-										</div>
-									);
+								{this.state.activeKey === 3 ? (
+									<div className={styles.award_result_tbody_td} style={{ marginRight: '0.6rem' }}>
+										<span
+											style={{
+												color: 'red',
+												fontSize: '0.32rem',
+												fontStyle: 'initial',
+												fontWeight: 'initial',
+											}}
+										>
+											{item.gyNum}
+										</span>
+									</div>
+								) : null}
+
+								{this.state.activeKey === 3 ? (
+									<div className={styles.award_result_tbody_td}>
+										<span
+											className={
+												this.state.activeKey === 0
+													? styles[colorConfig[item * 1]] + ' ' + styles.gray_side
+													: item.gymallOrBig === '大'
+													? styles.blue
+													: styles.orange
+											}
+										>
+											{item.gymallOrBig}
+										</span>
+									</div>
+								) : null}
+								{this.state.activeKey === 3 ? (
+									<div className={styles.award_result_tbody_td} style={{ marginRight: '0.6rem' }}>
+										<span
+											className={
+												this.state.activeKey === 0
+													? styles[colorConfig[item * 1]] + ' ' + styles.gray_side
+													: item.gySingleOrDouble === '单'
+													? styles.blue
+													: styles.orange
+											}
+										>
+											{item.gySingleOrDouble}
+										</span>
+									</div>
+								) : null}
+
+								{data.map((item1, index) => {
+									if (item1 === '') {
+									} else {
+										return (
+											<div className={styles.award_result_tbody_td} key={index}>
+												<span
+													className={
+														this.state.activeKey === 0
+															? styles[colorConfig[item1 * 1]] + ' ' + styles.gray_side
+															: item1 === '单' || item1 === '大' || item1 === '龙'
+															? styles.blue
+															: styles.orange
+													}
+												>
+													{item1}
+												</span>
+											</div>
+										);
+									}
 								})}
 							</div>
 						);
@@ -346,7 +264,8 @@ AwardResult.defaultProps = defaultProps;
 
 export default connect(
 	state => ({
-		awardResult: state.awardResult,
+		awardResult: state.play.awardResult,
+		loading: state.play.loading,
 	}),
 	{
 		getAwardResultAction: getAwardResult,

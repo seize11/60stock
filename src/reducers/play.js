@@ -9,6 +9,7 @@ const initialState = {
 	totalList: [],
 	lottery_info: {},
 	unfinishedDetail: [],
+	loading: false,
 };
 
 export default function playProps(state = initialState, action = {}) {
@@ -36,11 +37,11 @@ export default function playProps(state = initialState, action = {}) {
 		// loadingState: LOADING_STATE.SUCCESS
 
 		case actionTypes.GET_AWARD_RESULT_REQUEST:
-			return { ...state };
+			return { ...state, loading: true };
 		// loadingState: LOADING_STATE.BEGIN
 		case actionTypes.GET_AWARD_RESULT_SUCCESS:
 			console.log(action);
-			return { ...state, awardResult: payload };
+			return { ...state, awardResult: payload, loading: false };
 
 		case actionTypes.DELETE_UNFINISHED_DETAIL_REQUEST:
 			return { ...state };
