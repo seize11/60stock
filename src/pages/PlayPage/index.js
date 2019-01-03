@@ -19,7 +19,7 @@ import List from "../../components/Play/List";
 import MaskNav from "../../components/Play/MaskNav";
 import TopBar from "../../components/TopBar";
 import PopUpSelectResults from "../../components/Play/PopUpSelectResults";
-import { getToatalList } from "../../actions/play";
+import { getToatalList, get_lottery_info } from "../../actions/play";
 import SockJS from "../../lib/sockjs";
 
 const propTypes = {};
@@ -45,6 +45,7 @@ class PlayPage extends Component {
       callback: this.handleSocketData
     });
     this.props.getToatalListAction();
+    this.props.get_lottery_info();
   }
 
   componentWillUnmount() {
@@ -99,7 +100,7 @@ class PlayPage extends Component {
           }}
         />
         <PlaySecondBar />
-        <Period />
+        <Period {...this.props} />
         <List {...this.props} />
         {this.props.changeSelectPops.length > 0 ? (
           <PopUpSelectResults {...this.props} />
@@ -119,17 +120,22 @@ PlayPage.propTypes = propTypes;
 PlayPage.defaultProps = defaultProps;
 
 export default connect(
-  state => ({
-    base: state.base,
-    userName: state.user.name,
-    balance: state.account.balance,
-    table: state.table,
-    changeSelectPops: state.play.selectIds,
-    getTotalList: state.play.totalList
-  }),
+  state => {
+    console.log(state, "*********");
+    return {
+      base: state.base,
+      userName: state.user.name,
+      balance: state.account.balance,
+      table: state.table,
+      changeSelectPops: state.play.selectIds,
+      getTotalList: state.play.totalList,
+      lottery_info: state.play.lottery_info
+    };
+  },
   {
     getTableInitDataAction: getTableInitData,
     updateTableDataAction: updateTableData,
-    getToatalListAction: getToatalList
+    getToatalListAction: getToatalList,
+    get_lottery_info
   }
 )(PlayPage);

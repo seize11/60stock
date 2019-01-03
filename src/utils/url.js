@@ -61,7 +61,8 @@ export function getPrefix() {
   const prodHost = "http://wf0101.com/wf/api";
   // const statgeHost = 'http://47.106.205.151/wf/api';
   const statgeHost = "http://wf0101.com/wf/api";
-  const localHost = "http://zyy.s3.natapp.cc/api";
+  // const localHost = "http://zyy.s3.natapp.cc/api";
+  const localHost = "http://www.wanfengtest.com/wf/api";
   const preHost = isProd ? prodHost : statgeHost;
   if (USE_LOCAL) {
     return localHost;
