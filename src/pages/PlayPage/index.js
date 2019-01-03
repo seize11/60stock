@@ -20,6 +20,7 @@ import MaskNav from "../../components/Play/MaskNav";
 import TopBar from "../../components/TopBar";
 import PopUpSelectResults from "../../components/Play/PopUpSelectResults";
 import { getToatalList } from "../../actions/play";
+import SockJS from "../../lib/sockjs";
 
 const propTypes = {};
 
@@ -36,26 +37,47 @@ class PlayPage extends Component {
   }
 
   componentDidMount() {
+    this.socketConnect({
+      // url: "http://zyy.s3.natapp.cc/ws",
+      url: "http://www.wanfengtest.com/wf/ws",
+      subscribeUrl: "/topic/lottery/info/1",
+      // subscribeUrl: "/topic/baccarat/trend/",
+      callback: this.handleSocketData
+    });
     this.props.getToatalListAction();
   }
 
   componentWillUnmount() {
     SocketUtils.unsubscribe();
   }
-
-  handleSocketData = res => {
-    // const { base,  {
-    //   return;
-    // }updateTableDataAction } = this.props;
-    // const { fastType, gameType } = getURLParamsObject();
-    // if (!base.wsKey)
-    // const data = JSON.parse(decrypt(res, base.wsKey));
-    // updateTableDataAction({
-    //   fastType,
-    //   gameType,
-    //   data
-    // });
+  socketConnect = ({ url, subscribeUrl, callback }) => {
+    // 链接Socket的endpoint名称为endpointWisely
+    const socket = new SockJS(url);
+    // 使用STOMP子协议的WebSocket客户端
+    const stompClient = Stomp.over(socket);
+    // 链接WebSocket服务端
+    stompClient.connect(
+      {},
+      frame => {
+        // 通过stompClient.subscribe订阅/topic/getResponse目标发送的消息，即控制器中的@SendTo
+        stompClient.subscribe(subscribeUrl, response => {
+          callback(response.body);
+        });
+      }
+    );
   };
+  handleSocketData = res => {
+    console.log(this.props);
+    console.log(res);
+    const { base } = this.props;
+    if (!base.wsKey) {
+      return;
+    }
+    let data = JSON.parse(decrypt(res, base.wsKey));
+    console.log(data);
+    // updateTableDataAction({ fastType: 1, gameType: 2, data });
+  };
+
   renderTopBarContent = () => <div>存款</div>;
 
   handleIconClick() {

@@ -1,3 +1,4 @@
+/*   global SockJS, Stomp */
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import History from "../../../utils/history";
