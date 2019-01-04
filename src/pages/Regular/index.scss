@@ -1,1 +1,32 @@
-.wrap {}
+.wrap {
+	background: rgb(244, 244, 244);
+	min-height: 100vh;
+	span {
+		color: #b69c52;
+	}
+	color: rgb(85, 85, 85);
+	.content {
+		box-sizing: border-box;
+		padding: 2rem 0.3rem 1rem 0.3rem;
+		p {
+			font-size: 0.35rem;
+		}
+		h3 {
+			font-size: 0.45rem;
+			font-weight: bold;
+			color: #000000;
+		}
+		h4 {
+			font-size: 0.38rem;
+			font-weight: bold;
+			line-height: 0.7rem;
+			color: #000000;
+			span {
+				color: red;
+			}
+		}
+		ul li {
+			font-size: 0.32rem;
+		}
+	}
+}

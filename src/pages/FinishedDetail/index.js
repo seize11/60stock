@@ -130,7 +130,7 @@ class FinishedDetail extends Component {
 
 	render() {
 		const { userName, balance, table, leftContent } = this.props;
-
+		console.log(this.props);
 		return (
 			<div className={styles.unfinished_detail}>
 				<HeaderBar
