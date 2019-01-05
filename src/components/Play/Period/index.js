@@ -82,6 +82,9 @@ class Period extends Component {
       };
     };
     const foldWrapper = { textAlign: "center" };
+    const openCode =
+      this.props.lottery_info.openCode &&
+      this.props.lottery_info.openCode.split(",");
     return (
       <div className={styles.period}>
         <div className={styles.number}>
@@ -89,11 +92,12 @@ class Period extends Component {
             {this.props.lottery_info.lastExpect} 期
           </span>
           <span className={styles.number_second}>
-            {numberList.map((item, index) => (
-              <span style={numberStyle(index)} key={index}>
-                {item}
-              </span>
-            ))}
+            {openCode &&
+              openCode.map((item, index) => (
+                <span style={numberStyle(index)} key={index}>
+                  {item}
+                </span>
+              ))}
           </span>
         </div>
         <div className={styles.timing}>
@@ -104,14 +108,16 @@ class Period extends Component {
           <span className={styles.timing_second}>
             封盘:
             <span className={styles.secondInterval}>
-              {`${this.state.minute}:${this.state.second}`}
+              {/* {`${this.state.minute}:${this.state.second}`} */}
+              {this.props.lottery_info.endTime}
             </span>
           </span>
           <span className={styles.timing_third}>
             开奖:
-            <span className={styles.thirdInterval}>{`${this.state.minute}:${
-              this.state.second
-            }`}</span>
+            <span className={styles.thirdInterval}>
+              {/* {`${this.state.minute}:${this.state.second}`} */}
+              {this.props.lottery_info.openTime}
+            </span>
           </span>
         </div>
       </div>

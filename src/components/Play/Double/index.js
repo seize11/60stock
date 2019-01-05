@@ -1,3 +1,4 @@
+/*   global SockJS, Stomp */
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import History from "../../../utils/history";
@@ -6,7 +7,10 @@ import styles from "./Double.scss";
 import "./Double.scss";
 import right_botttom_Image from "Images/type/right_botttom.png";
 import { connect } from "react-redux";
-import { changeSelectPopsAction } from "../../../actions/play";
+import {
+  changeSelectPopsAction,
+  changeColorIdsAction
+} from "../../../actions/play";
 
 const propTypes = {
   leftContent: PropTypes.any,
@@ -27,19 +31,14 @@ class Single extends Component {
     this.state = {
       showPlaySecondBar: true,
       selectIds: [],
+      colorIds: [],
       isShowSonsIds: []
     };
   }
-  // state = {
-  //   showPlaySecondBar: true,
-  //   selectIds: [],
-  //   isShowSonsIds: []
-  // };
   componentDidMount() {}
 
   onChange = key => {};
   toggleNum = dataItem => {
-    console.log(dataItem);
     if (this.state.isShowSonsIds.indexOf(dataItem.name) > -1) {
       let delIndex = this.state.isShowSonsIds.filter(
         item => item != dataItem.name
@@ -51,24 +50,48 @@ class Single extends Component {
       this.setState({ isShowSonsIds: aRR });
     }
   };
-  toggleBorder = dataItem => {
-    if (this.state.selectIds.indexOf(dataItem.code) > -1) {
-      let delIndex = this.state.selectIds.filter(item => item != dataItem.code);
-      this.setState({ selectIds: delIndex }, () => {
-        this.props.changeSelectPopsAction(this.state.selectIds);
-      });
+  hasItemCode = (colorIds, dataItem) => {
+    console.log(colorIds, dataItem);
+    if (colorIds.indexOf(dataItem.code) > -1) {
+      return true;
     } else {
-      let aRR = this.state.selectIds;
-      aRR.push(dataItem.code);
-      this.setState({ selectIds: aRR }, () => {
-        this.props.changeSelectPopsAction(this.state.selectIds);
+      return false;
+    }
+  };
+  toggleBorder = (dataItem, item, grandparent) => {
+    if (this.props.lottery_info.endTime == "已封盘") {
+      return false;
+    }
+
+    let ishasItem = this.hasItemCode(this.props.colorIds, dataItem);
+    console.log(ishasItem);
+    if (ishasItem) {
+      let delIndex = this.props.selectIds.filter(
+        item => item.code != dataItem.code
+      );
+      this.props.changeSelectPopsAction(delIndex);
+      //只用切换颜色
+      let delIndex2 = this.props.colorIds.filter(item => item != dataItem.code);
+      this.props.changeColorIdsAction(delIndex2);
+    } else {
+      let aRR = this.props.selectIds;
+      let aRR2 = this.props.colorIds;
+      aRR.push({
+        code: dataItem.code,
+        name: dataItem.name,
+        odds: dataItem.odds,
+        parentname: item.name,
+        grandparentname: grandparent
       });
+      aRR2.push(dataItem.code);
+      this.props.changeSelectPopsAction(aRR);
+      this.props.changeColorIdsAction(aRR2);
     }
   };
 
   render() {
-    const { numberList, totalList } = this.props;
-    console.log(this.props);
+    const { totalList, lottery_info } = this.props;
+    // console.log(this.props);
     return (
       <div className={styles.Single}>
         {totalList[0] &&
@@ -103,15 +126,25 @@ class Single extends Component {
                     <div
                       className={styles.grid}
                       style={
-                        this.state.selectIds.indexOf(dataItem.code) > -1
+                        this.props.colorIds.indexOf(dataItem.code) > -1
                           ? { border: "0.1rem solid yellow" }
                           : null
                       }
-                      onClick={this.toggleBorder.bind(this, dataItem)}
+                      onClick={this.toggleBorder.bind(
+                        this,
+                        dataItem,
+                        item,
+                        totalList[1].name
+                      )}
                     >
                       <span>{dataItem.name}</span>
-                      <span className={styles.redNum}>{dataItem.odds}</span>
-                      {this.state.selectIds.indexOf(dataItem.code) > -1 ? (
+                      <span className={styles.redNum}>
+                        {lottery_info.endTime &&
+                        lottery_info.endTime == "已封盘"
+                          ? "--"
+                          : dataItem.odds}
+                      </span>
+                      {this.props.colorIds.indexOf(dataItem.code) > -1 ? (
                         <img src={right_botttom_Image} />
                       ) : null}
                     </div>
@@ -135,8 +168,10 @@ export default connect(
     userName: state.user.name,
     balance: state.account.balance,
     table: state.table,
-    changeSelectPops: state.play.selectIds,
-    totalList: state.play.totalList
+    selectIds: state.play.selectIds,
+    colorIds: state.play.colorIds,
+    totalList: state.play.totalList,
+    lottery_info: state.play.lottery_info
   }),
-  { changeSelectPopsAction }
+  { changeSelectPopsAction, changeColorIdsAction }
 )(Single);

@@ -10,6 +10,7 @@ import {
 	GET_AWARD_RESULT,
 	DELETE_UNFINISHED_DETAIL,
 	GET_LOTTERY_INFO,
+	GET_BALANCE_INFO,
 	GO_BET,
 } from '../constants/api';
 
@@ -43,6 +44,21 @@ export function get_lottery_info(success, error) {
 		},
 	};
 }
+export function get_Balance(success, error) {
+	return {
+		[CALL_API]: {
+			url: GET_BALANCE_INFO,
+			method: 'post',
+			types: [
+				actionTypes.GET_BALANCE_INFO_REQUEST,
+				actionTypes.GET_BALANCE_INFO_SUCCESS,
+				actionTypes.GET_BALANCE_INFO_FAILURE,
+			],
+			success,
+			error,
+		},
+	};
+}
 export function gobet(data, success, error) {
 	return {
 		[CALL_API]: {
@@ -57,6 +73,12 @@ export function gobet(data, success, error) {
 }
 export function changeSelectPopsAction(selectIds) {
 	return { type: actionTypes.CHANGE_SELECT_POPS, payload: selectIds };
+}
+export function changeColorIdsAction(colorIds) {
+	return { type: actionTypes.CHANGE_COLORIDS_POPS, payload: colorIds };
+}
+export function changeLotteryInfo(data) {
+	return { type: actionTypes.CHANGE_LOTTERY_INFO, payload: data };
 }
 export function getAccountDetails(success, error) {
 	return {

@@ -54,7 +54,6 @@ class LoginPage extends Component {
         },
         () => {
           Toast.hide();
-          alert(444);
           HistoryUtils.replace("/");
         }
       );

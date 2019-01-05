@@ -57,6 +57,7 @@ export const GET_TABLE_CHIP = '/table/player/bet/amount';
 //playPage页面交互贡公共参数
 export const GET_TOTAL_LIST = '/lottery/menu/1';
 export const GET_LOTTERY_INFO = '/lottery/info/1';
+export const GET_BALANCE_INFO = '/lottery/detail/1';
 export const GO_BET = '/lottery/bet';
 
 // 获取未结详情

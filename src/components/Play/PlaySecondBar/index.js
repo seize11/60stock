@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import History from "../../../utils/history";
+import { connect } from "react-redux";
 
 import styles from "./PlaySecondBar.scss";
 import palySecondUp from "Images/type/palySecondUp.png";
@@ -37,9 +38,7 @@ class PlaySecondBar extends Component {
       rightContent,
       leftContent,
       midcontent,
-      midNumber,
-      rightNumber,
-      leftNumber,
+      balanceInfo,
       as,
       ...restProps
     } = this.props;
@@ -61,15 +60,15 @@ class PlaySecondBar extends Component {
           <div className={cls} {...restProps}>
             <div className={styles.left}>
               <span className={styles.text_color}>{leftContent}</span>
-              <span>{leftNumber}</span>
+              <span>{balanceInfo.balance}</span>
             </div>
             <div className={styles.mid}>
               <span className={styles.text_color}>{rightContent}</span>
-              <span>{rightNumber}</span>
+              <span>{balanceInfo.noSettlement}</span>
             </div>
             <div className={styles.right}>
               <span className={styles.text_color}>{midcontent}</span>
-              <span>{midNumber}</span>
+              <span>{balanceInfo.win}</span>
             </div>
           </div>
         ) : null}
@@ -89,4 +88,13 @@ class PlaySecondBar extends Component {
 PlaySecondBar.propTypes = propTypes;
 PlaySecondBar.defaultProps = defaultProps;
 
-export default PlaySecondBar;
+// export default PlaySecondBar;
+
+export default connect(
+  state => {
+    return {
+      balanceInfo: state.play.balanceInfo
+    };
+  },
+  {}
+)(PlaySecondBar);
