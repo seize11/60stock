@@ -9,6 +9,7 @@ const initialState = {
 	totalList: [],
 	lottery_info: {},
 	unfinishedDetail: [],
+	finishedDetail: [],
 	loading: false,
 };
 
@@ -35,6 +36,18 @@ export default function playProps(state = initialState, action = {}) {
 			console.log(action);
 			return { ...state, unfinishedDetail: payload };
 		// loadingState: LOADING_STATE.SUCCESS
+
+		case actionTypes.GET_FINISHED_DETAIL_REQUEST:
+			return { ...state };
+		// loadingState: LOADING_STATE.BEGIN
+		case actionTypes.GET_FINISHED_DETAIL_SUCCESS:
+			console.log(action);
+			let totalWin = 0;
+			let totalMount = 0;
+			payload.forEach((item, index) => {
+				totalWin += item.win;
+			});
+			return { ...state, finishedDetail: payload };
 
 		case actionTypes.GET_AWARD_RESULT_REQUEST:
 			return { ...state, loading: true };

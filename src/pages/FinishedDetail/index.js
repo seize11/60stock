@@ -8,7 +8,7 @@ import PearlRoad from '../../components/PearlRoad';
 import BigRoad from '../../components/BigRoad';
 import { decrypt } from '../../utils/info';
 import { getURLParamsObject } from '../../utils/url';
-import { getUnfinishedDetail } from '../../actions/play';
+import { getFinishedDetail } from '../../actions/play';
 import SocketUtils from '../../utils/socket';
 import Link from '../../components/Link';
 import Page from '../../components/Page';
@@ -100,7 +100,7 @@ class FinishedDetail extends Component {
 	}
 
 	componentDidMount() {
-		this.props.getUnfinishedDetailAction();
+		this.props.getFinishedDetailAction();
 	}
 
 	componentWillUnmount() {
@@ -152,7 +152,7 @@ class FinishedDetail extends Component {
 					})}
 				</div>
 				<div className={styles.unfinished_detail_content}>
-					{defaultProps.list.map((item, index) => {
+					{this.props.finishedDetail.map((item, index) => {
 						return (
 							<SwipeAction
 								style={{
@@ -193,20 +193,20 @@ class FinishedDetail extends Component {
 								<List.Item arrow={false} onClick={() => console.log('List.Item clicked!')}>
 									<div className={styles.unfinished_detail_content_item}>
 										<div className={styles.unfinished_detail_content_item_cell}>
-											{item.time}
+											{item.betTime.split(' ')[0]}
 											<br />
-											{item.time_detail}
+											{item.betTime.split(' ')[1]}
 										</div>
 										<div className={styles.unfinished_detail_content_item_cell}>
-											{item.name}
-											<br />第<span>{item.stamp}</span>期
+											{item.lotteryName}
+											<br />第<span>{item.expect}</span>期
 										</div>
 										<div className={styles.unfinished_detail_content_item_cell}>
-											{item.level}
-											<br />@<span>{item.level_num}</span>
+											{item.betName}
+											<br />@<span>{item.odds}</span>
 										</div>
-										<div className={styles.unfinished_detail_content_item_cell}>{item.chip_in}</div>
-										<div className={styles.unfinished_detail_content_item_cell}>{item.can_win}</div>
+										<div className={styles.unfinished_detail_content_item_cell}>{item.amount}</div>
+										<div className={styles.unfinished_detail_content_item_cell}>{item.win}</div>
 									</div>
 								</List.Item>
 							</SwipeAction>
@@ -232,9 +232,9 @@ FinishedDetail.defaultProps = defaultProps;
 
 export default connect(
 	state => ({
-		unfinishedDetail: state.play.unfinishedDetail,
+		finishedDetail: state.play.finishedDetail,
 	}),
 	{
-		getUnfinishedDetailAction: getUnfinishedDetail,
+		getFinishedDetailAction: getFinishedDetail,
 	}
 )(FinishedDetail);

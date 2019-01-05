@@ -6,6 +6,7 @@ import {
 	GET_TOTAL_LIST,
 	GET_UNFINISHED_DETAIL,
 	UNFINISHED_DETAIL,
+	GET_FINISHED_DETAIL,
 	GET_AWARD_RESULT,
 	DELETE_UNFINISHED_DETAIL,
 	GET_LOTTERY_INFO,
@@ -82,6 +83,22 @@ export function getUnfinishedDetail(success, error) {
 				actionTypes.GET_UNFINISHED_DETAIL_REQUEST,
 				actionTypes.GET_UNFINISHED_DETAIL_SUCCESS,
 				actionTypes.GET_UNFINISHED_DETAIL_FAILURE,
+			],
+			success,
+			error,
+		},
+	};
+}
+
+export function getFinishedDetail(success, error) {
+	return {
+		[CALL_API]: {
+			url: GET_FINISHED_DETAIL,
+			method: 'post',
+			types: [
+				actionTypes.GET_FINISHED_DETAIL_REQUEST,
+				actionTypes.GET_FINISHED_DETAIL_SUCCESS,
+				actionTypes.GET_FINISHED_DETAIL_FAILURE,
 			],
 			success,
 			error,

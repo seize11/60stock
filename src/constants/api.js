@@ -63,3 +63,5 @@ export const GO_BET = '/lottery/bet';
 export const GET_UNFINISHED_DETAIL = '/lottery/bet/processing';
 
 export const GET_AWARD_RESULT = '/lottery/open/list';
+
+export const GET_FINISHED_DETAIL = '/lottery/bet/completed';
