@@ -2,9 +2,13 @@ import actionTypes from "../constants/actionTypes";
 
 const initialState = {
   selectIds: [],
+  colorIds: [],
   totalList: [],
   lottery_info: {},
-  unfinishedDetail: []
+  gobetinfo: {},
+  balanceInfo: {},
+  unfinishedDetail: [],
+  isbet: false
 };
 
 export default function playProps(state = initialState, action = {}) {
@@ -13,7 +17,11 @@ export default function playProps(state = initialState, action = {}) {
   switch (type) {
     //======CHANGE_SELECT_POPS
     case actionTypes.CHANGE_SELECT_POPS:
-      return { ...state, selectIds: payload };
+      return { ...state, selectIds: [...payload] };
+    //======CHANGE_SELECT_POPS
+    case actionTypes.CHANGE_COLORIDS_POPS:
+      return { ...state, colorIds: [...payload] };
+    //改变对象指针拷贝
     //========GET_TOTAL_LIST_REQUEST
     case actionTypes.GET_TOTAL_LIST_REQUEST:
       return { ...state };
@@ -25,14 +33,23 @@ export default function playProps(state = initialState, action = {}) {
       return { ...state };
     // loadingState: LOADING_STATE.BEGIN
     case actionTypes.GET_LOTTERY_INFO_SUCCESS:
-      console.log(payload);
+      // console.log(payload);
       return { ...state, lottery_info: payload };
-    case actionTypes.GO_BET_REQUEST:
+    case actionTypes.CHANGE_LOTTERY_INFO:
+      return { ...state, lottery_info: { ...payload } };
+    case actionTypes.GET_BALANCE_INFO_REQUEST:
       return { ...state };
+    // loadingState: LOADING_STATE.BEGIN
+    case actionTypes.GET_BALANCE_INFO_SUCCESS:
+      console.log(payload);
+      return { ...state, balanceInfo: { ...payload } };
+    case actionTypes.GO_BET_REQUEST:
+      console.log(payload);
+      return { ...state, isbet: false };
     // loadingState: LOADING_STATE.BEGIN
     case actionTypes.GO_BET_SUCCESS:
       console.log(payload);
-      return { ...state, lottery_info: payload };
+      return { ...state, gobetinfo: payload, isbet: true };
     // loadingState: LOADING_STATE.SUCCESS
     //========GET_TOTAL_LIST_REQUEST
     case actionTypes.GET_UNFINISHED_DETAIL_REQUEST:

@@ -19,7 +19,12 @@ import List from "../../components/Play/List";
 import MaskNav from "../../components/Play/MaskNav";
 import TopBar from "../../components/TopBar";
 import PopUpSelectResults from "../../components/Play/PopUpSelectResults";
-import { getToatalList, get_lottery_info } from "../../actions/play";
+import {
+  getToatalList,
+  get_lottery_info,
+  get_Balance,
+  changeLotteryInfo
+} from "../../actions/play";
 import SockJS from "../../lib/sockjs";
 
 const propTypes = {};
@@ -37,15 +42,16 @@ class PlayPage extends Component {
   }
 
   componentDidMount() {
-    this.socketConnect({
-      // url: "http://zyy.s3.natapp.cc/ws",
-      url: "http://www.wanfengtest.com/wf/ws",
-      subscribeUrl: "/topic/lottery/info/1",
-      // subscribeUrl: "/topic/baccarat/trend/",
-      callback: this.handleSocketData
-    });
+    // this.socketConnect({
+    //   // url: "http://zyy.s3.natapp.cc/ws",
+    //   url: "http://www.wanfengtest.com/wf/ws",
+    //   subscribeUrl: "/topic/lottery/info/1",
+    //   // subscribeUrl: "/topic/baccarat/trend/",
+    //   callback: this.handleSocketData
+    // });
     this.props.getToatalListAction();
     this.props.get_lottery_info();
+    this.props.get_Balance();
   }
 
   componentWillUnmount() {
@@ -68,14 +74,15 @@ class PlayPage extends Component {
     );
   };
   handleSocketData = res => {
-    console.log(this.props);
-    console.log(res);
+    // console.log(this.props);
+    // console.log(res);
     const { base } = this.props;
     if (!base.wsKey) {
       return;
     }
     let data = JSON.parse(decrypt(res, base.wsKey));
-    console.log(data);
+    // console.log(data);
+    this.props.changeLotteryInfo(data);
     // updateTableDataAction({ fastType: 1, gameType: 2, data });
   };
 
@@ -121,7 +128,7 @@ PlayPage.defaultProps = defaultProps;
 
 export default connect(
   state => {
-    console.log(state, "*********");
+    // console.log(state, "*********");
     return {
       base: state.base,
       userName: state.user.name,
@@ -129,13 +136,16 @@ export default connect(
       table: state.table,
       changeSelectPops: state.play.selectIds,
       getTotalList: state.play.totalList,
-      lottery_info: state.play.lottery_info
+      lottery_info: state.play.lottery_info,
+      balanceInfo: state.play.balanceInfo
     };
   },
   {
     getTableInitDataAction: getTableInitData,
     updateTableDataAction: updateTableData,
     getToatalListAction: getToatalList,
-    get_lottery_info
+    get_lottery_info,
+    changeLotteryInfo,
+    get_Balance
   }
 )(PlayPage);

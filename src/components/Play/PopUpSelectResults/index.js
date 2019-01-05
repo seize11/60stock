@@ -2,11 +2,16 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import History from "../../../utils/history";
 import { connect } from "react-redux";
+import { decrypt } from "../../../utils/info";
 
 import styles from "./PopUpSelectResults.scss";
 import SelfModal from "../SelfModal";
 import { Checkbox, Icon, Grid, SwipeAction, Modal } from "antd-mobile";
-import { gobet } from "../../../../src/actions/play";
+import {
+  gobet,
+  changeSelectPopsAction,
+  changeColorIdsAction
+} from "../../../../src/actions/play";
 
 const CheckboxItem = Checkbox.CheckboxItem;
 const operation = Modal.operation;
@@ -45,8 +50,9 @@ const defaultProps = {
 class PopUpSelectResults extends Component {
   state = {
     modal1: false,
+    selectnum: 0,
     showPlaySecondBar: true,
-    isShowDetail: true,
+    isShowDetail: false,
     baseAmount: 5,
     isShowModal: false,
     amountList: [
@@ -75,7 +81,7 @@ class PopUpSelectResults extends Component {
         name: 500
       }
     ],
-    tableList: [1, 2, 3, 4, 7]
+    tableList: []
   };
   onChange(e) {}
   isShowDetail = () => {
@@ -84,12 +90,12 @@ class PopUpSelectResults extends Component {
   changeBaseAmount = value => {
     this.setState({ baseAmount: value });
   };
-  isShowModal = () => {
-    this.setState({ isShowModal: !this.state.isShowModal });
+  betANDisShowModal = () => {
+    // this.setState({ isShowModal: !this.state.isShowModal });
     //待确定code
     console.log(this.props);
-    let selectLoterry = this.props.changeSelectPops.map(item => {
-      return { code: item, amount: this.state.baseAmount };
+    let selectLoterry = this.props.selectIds.map(item => {
+      return { code: item.code, amount: this.state.baseAmount };
     });
     console.log("object :", selectLoterry);
     let data = {
@@ -100,11 +106,31 @@ class PopUpSelectResults extends Component {
     console.log("object2 :", data);
     this.props.gobet(data);
   };
-
+  UNSAFE_componentWillReceiveProps(nextprops) {
+    console.log(nextprops);
+    this.setState({ selectnum: nextprops.selectIds.length });
+    if (nextprops.isbet != this.props.isbet && nextprops.isbet) {
+      this.setState({ isShowModal: !this.state.isShowModal });
+    }
+  }
+  clearALLSelect = () => {
+    this.props.changeSelectPopsAction([]);
+    this.props.changeColorIdsAction([]);
+  };
+  delete = dataItem => {
+    console.log(dataItem);
+    let delIndex = this.props.selectIds.filter(
+      item => item.code != dataItem.code
+    );
+    this.props.changeSelectPopsAction(delIndex);
+    let delIndex2 = this.props.colorIds.filter(item => item != dataItem.code);
+    this.props.changeColorIdsAction(delIndex2);
+  };
   render() {
-    const { details } = this.props;
-    const { amountList, tableList, isShowDetail } = this.state;
-
+    console.log(this.props, "*********");
+    const { details, selectIds } = this.props;
+    const { amountList, tableList, isShowDetail, selectnum } = this.state;
+    console.log(this.props);
     return (
       <div className={styles.PopUpSelectResults}>
         {isShowDetail ? (
@@ -116,34 +142,14 @@ class PopUpSelectResults extends Component {
               急速赛车
             </div>
             <table className={styles.table}>
-              <SwipeAction
-                autoClose
-                right={
-                  [
-                    {
-                      text: "Cancel",
-                      onPress: () => console.log("cancel"),
-                      style: { backgroundColor: "#ddd", color: "white" }
-                    },
-                    {
-                      text: "Delete",
-                      onPress: () => console.log("delete"),
-                      style: { backgroundColor: "#F4333C", color: "white" }
-                    }
-                  ] // style={{ width: "50%" }} // className={styles.tableItem}
-                }
-                onOpen={() => console.log("global open")}
-                onClose={() => console.log("global close")}
-              >
-                <tr className={styles.tableHead}>
-                  <th>金额</th>
-                  <th>详情</th>
-                  <th>下注</th>
-                  <th>赔率</th>
-                  <th>操作</th>
-                </tr>
-              </SwipeAction>
-              {tableList.map((item, index) => (
+              <tr className={styles.tableHead}>
+                <th>金额</th>
+                <th>详情</th>
+                <th>下注</th>
+                <th>赔率</th>
+                <th>操作</th>
+              </tr>
+              {this.props.selectIds.map((item, index) => (
                 <SwipeAction
                   style={{ backgroundColor: "gray" }}
                   autoClose
@@ -155,7 +161,7 @@ class PopUpSelectResults extends Component {
                     },
                     {
                       text: "Delete",
-                      onPress: () => console.log("delete"),
+                      onPress: this.delete.bind(this, item),
                       style: { backgroundColor: "#F4333C", color: "white" }
                     }
                   ]}
@@ -169,11 +175,15 @@ class PopUpSelectResults extends Component {
                     renderItem={(dataItem, i) => <td>1</td>}
                   /> */}
                   <tr className={styles.tableBody}>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>删除</td>
+                    <td>{this.state.baseAmount}</td>
+                    <td>
+                      {item.grandparentname}
+                      <br />
+                      {item.parentname}
+                    </td>
+                    <td>{item.name}</td>
+                    <td> {item.odds}</td>
+                    <td onClick={this.delete.bind(this, item)}>删除</td>
                   </tr>
                 </SwipeAction>
               ))}
@@ -181,7 +191,7 @@ class PopUpSelectResults extends Component {
           </div>
         ) : null}
         <div className={styles.grayPop} onClick={this.isShowDetail}>
-          已选2注
+          已选{selectIds.length}注
           {isShowDetail ? (
             <Icon type="down" size="xxs" />
           ) : (
@@ -220,8 +230,13 @@ class PopUpSelectResults extends Component {
             className={styles.preAmoutInput}
           />
           <div className={styles.preAmoutText}>预设金额</div>
-          <div className={styles.cancel}>取 消</div>
-          <div className={styles.confirmButton} onClick={this.isShowModal}>
+          <div className={styles.cancel} onClick={this.clearALLSelect}>
+            取 消
+          </div>
+          <div
+            className={styles.confirmButton}
+            onClick={this.betANDisShowModal}
+          >
             确认
           </div>
         </div>
@@ -238,19 +253,23 @@ PopUpSelectResults.defaultProps = defaultProps;
 
 export default connect(
   state => {
-    console.log(state, "*********");
+    console.log(state);
     return {
       base: state.base,
       userName: state.user.name,
       balance: state.account.balance,
       table: state.table,
-      changeSelectPops: state.play.selectIds,
       getTotalList: state.play.totalList,
       lottery_info: state.play.lottery_info,
-      gobetinfo: state.play.gobetinfo
+      selectIds: state.play.selectIds,
+      colorIds: state.play.colorIds,
+      gobetinfo: state.play.gobetinfo,
+      isbet: state.play.isbet
     };
   },
   {
-    gobet
+    gobet,
+    changeSelectPopsAction,
+    changeColorIdsAction
   }
 )(PopUpSelectResults);
