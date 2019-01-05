@@ -6,6 +6,8 @@ import {
   GET_TOTAL_LIST,
   GET_UNFINISHED_DETAIL,
   UNFINISHED_DETAIL,
+  GET_AWARD_RESULT,
+  DELETE_UNFINISHED_DETAIL,
   GET_LOTTERY_INFO,
   GET_BALANCE_INFO,
   GO_BET
@@ -105,7 +107,40 @@ export function getUnfinishedDetail(success, error) {
       types: [
         actionTypes.GET_UNFINISHED_DETAIL_REQUEST,
         actionTypes.GET_UNFINISHED_DETAIL_SUCCESS,
-        actionTypes.GET_GET_UNFINISHED_DETAIL_FAILURE
+        actionTypes.GET_UNFINISHED_DETAIL_FAILURE
+      ],
+      success,
+      error
+    }
+  };
+}
+
+export function getAwardResult(data, success, error) {
+  return {
+    [CALL_API]: {
+      url: GET_AWARD_RESULT,
+      method: "post",
+      data,
+      types: [
+        actionTypes.GET_AWARD_RESULT_REQUEST,
+        actionTypes.GET_AWARD_RESULT_SUCCESS,
+        actionTypes.GET_AWARD_RESULT_FAILURE
+      ],
+      success,
+      error
+    }
+  };
+}
+
+export function deleteUnfinishedResult(success, error) {
+  return {
+    [CALL_API]: {
+      url: DELETE_UNFINISHED_DETAIL,
+      method: "post",
+      types: [
+        actionTypes.DELETE_UNFINISHED_DETAIL_REQUEST,
+        actionTypes.DELETE_UNFINISHED_DETAIL_SUCCESS,
+        actionTypes.DELETE_UNFINISHED_DETAIL_FAILURE
       ],
       success,
       error

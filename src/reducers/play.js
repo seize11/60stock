@@ -8,6 +8,7 @@ const initialState = {
   gobetinfo: {},
   balanceInfo: {},
   unfinishedDetail: [],
+  awardResult: [],
   isbet: false
 };
 
@@ -47,6 +48,27 @@ export default function playProps(state = initialState, action = {}) {
       console.log(payload);
       return { ...state, isbet: false };
     // loadingState: LOADING_STATE.BEGIN
+    case actionTypes.GET_UNFINISHED_DETAIL_REQUEST:
+      return { ...state };
+    // loadingState: LOADING_STATE.BEGIN
+    case actionTypes.GET_UNFINISHED_DETAIL_SUCCESS:
+      console.log(action);
+      return { ...state, unfinishedDetail: payload };
+    // loadingState: LOADING_STATE.SUCCESS
+
+    case actionTypes.GET_AWARD_RESULT_REQUEST:
+      return { ...state, loading: true };
+    // loadingState: LOADING_STATE.BEGIN
+    case actionTypes.GET_AWARD_RESULT_SUCCESS:
+      console.log(action);
+      return { ...state, awardResult: payload, loading: false };
+
+    case actionTypes.DELETE_UNFINISHED_DETAIL_REQUEST:
+      return { ...state };
+
+    case actionTypes.DELETE_UNFINISHED_DETAIL_SUCCESS:
+      console.log(action);
+      return { ...state, deleteResult: payload };
     case actionTypes.GO_BET_SUCCESS:
       console.log(payload);
       return { ...state, gobetinfo: payload, isbet: true };

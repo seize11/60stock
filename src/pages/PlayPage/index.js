@@ -117,6 +117,7 @@ class PlayPage extends Component {
           handleExit={() => {
             this.handleExit();
           }}
+          {...this.props}
         />
       </div>
     );

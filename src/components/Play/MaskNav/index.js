@@ -26,7 +26,7 @@ const defaultProps = {
 		{
 			name: '今日已结',
 			key: 1,
-			path: '/unfinishedDetail',
+			path: '/finishedDetail',
 			img: rightIconImage,
 		},
 		{
@@ -38,7 +38,7 @@ const defaultProps = {
 		{
 			name: '游戏规则',
 			key: 4,
-			path: '/unfinishedDetail',
+			path: '/regular',
 			img: rightIconImage,
 		},
 	],

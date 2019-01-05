@@ -19,7 +19,7 @@ import { SwipeAction, List, Flex } from 'antd-mobile';
 const propTypes = {};
 
 const defaultProps = {
-	leftContent: '未结明细',
+	leftContent: '今日已结',
 	nav: [
 		{
 			name: '时间',
@@ -91,7 +91,7 @@ const defaultProps = {
 	],
 };
 
-class UnfinishedDetail extends Component {
+class FinishedDetail extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -130,7 +130,7 @@ class UnfinishedDetail extends Component {
 
 	render() {
 		const { userName, balance, table, leftContent } = this.props;
-
+		console.log(this.props);
 		return (
 			<div className={styles.unfinished_detail}>
 				<HeaderBar
@@ -227,8 +227,8 @@ class UnfinishedDetail extends Component {
 	}
 }
 
-UnfinishedDetail.propTypes = propTypes;
-UnfinishedDetail.defaultProps = defaultProps;
+FinishedDetail.propTypes = propTypes;
+FinishedDetail.defaultProps = defaultProps;
 
 export default connect(
 	state => ({
@@ -237,4 +237,4 @@ export default connect(
 	{
 		getUnfinishedDetailAction: getUnfinishedDetail,
 	}
-)(UnfinishedDetail);
+)(FinishedDetail);
