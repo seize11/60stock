@@ -152,6 +152,9 @@ class FinishedDetail extends Component {
 					})}
 				</div>
 				<div className={styles.unfinished_detail_content}>
+					{this.props.finishedDetail.length === 0 ? (
+						<div style={{ marginTop: '100px', textAlign: 'center' }}>暂无数据</div>
+					) : null}
 					{this.props.finishedDetail.map((item, index) => {
 						return (
 							<SwipeAction
