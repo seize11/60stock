@@ -8,7 +8,7 @@ import PearlRoad from '../../components/PearlRoad';
 import BigRoad from '../../components/BigRoad';
 import { decrypt } from '../../utils/info';
 import { getURLParamsObject } from '../../utils/url';
-import { getUnfinishedDetail } from '../../actions/play';
+import { getUnfinishedDetail, deleteUnfinishedDetail, updateUnfinishedDetail } from '../../actions/play';
 import SocketUtils from '../../utils/socket';
 import Link from '../../components/Link';
 import Page from '../../components/Page';
@@ -127,7 +127,18 @@ class UnfinishedDetail extends Component {
 		this.setState({ show: false });
 	}
 	renderTopBarContent = () => <div>存款</div>;
-
+	deleteOne(id) {
+		this.props.deleteUnfinishedDetailAction({ id }).then(() => {
+			const data = [];
+			this.props.unfinishedDetail.forEach(item => {
+				if (item.id !== id) {
+					data.push(item);
+				}
+			});
+			console.log(data);
+			this.props.updateUnfinishedDetailAction(data);
+		});
+	}
 	render() {
 		const { userName, balance, table, leftContent } = this.props;
 		console.log(this.props);
@@ -166,7 +177,9 @@ class UnfinishedDetail extends Component {
 								right={[
 									{
 										text: '删除',
-										onPress: () => console.log('delete'),
+										onPress: () => {
+											this.deleteOne(item.id);
+										},
 										style: {
 											backgroundColor: '#F4333C',
 											color: 'white',
@@ -215,10 +228,10 @@ class UnfinishedDetail extends Component {
 				</div>
 				<div className={styles.unfinished_detail_footer}>
 					<ul>
-						<li>注数：7</li>
-						<li>下注金额：140</li>
+						<li>注数：{this.props.otherData.total}</li>
+						<li>下注金额：{this.props.otherData.betAmount}</li>
 						<li>
-							结果(总计)：<span>9876543.00</span>
+							结果(总计)：<span>{this.props.otherData.win}</span>
 						</li>
 					</ul>
 				</div>
@@ -233,8 +246,11 @@ UnfinishedDetail.defaultProps = defaultProps;
 export default connect(
 	state => ({
 		unfinishedDetail: state.play.unfinishedDetail,
+		otherData: state.play.unfinishedOtherData,
 	}),
 	{
 		getUnfinishedDetailAction: getUnfinishedDetail,
+		deleteUnfinishedDetailAction: deleteUnfinishedDetail,
+		updateUnfinishedDetailAction: updateUnfinishedDetail,
 	}
 )(UnfinishedDetail);

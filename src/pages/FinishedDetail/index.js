@@ -8,7 +8,7 @@ import PearlRoad from '../../components/PearlRoad';
 import BigRoad from '../../components/BigRoad';
 import { decrypt } from '../../utils/info';
 import { getURLParamsObject } from '../../utils/url';
-import { getFinishedDetail } from '../../actions/play';
+import { getFinishedDetail, deleteUnfinishedDetail, updateFinishedDetail } from '../../actions/play';
 import SocketUtils from '../../utils/socket';
 import Link from '../../components/Link';
 import Page from '../../components/Page';
@@ -166,7 +166,17 @@ class FinishedDetail extends Component {
 								right={[
 									{
 										text: '删除',
-										onPress: () => console.log('delete'),
+										onPress: () => {
+											this.props.deleteFinishedDetailAction({ id: item.id }).then(() => {
+												const data = [];
+												this.props.finishedDetail.forEach(item => {
+													if (item.id !== id) {
+														data.push(item);
+													}
+												});
+												this.props.updateFinishedDetailAction(data);
+											});
+										},
 										style: {
 											backgroundColor: '#F4333C',
 											color: 'white',
@@ -215,10 +225,10 @@ class FinishedDetail extends Component {
 				</div>
 				<div className={styles.unfinished_detail_footer}>
 					<ul>
-						<li>注数：7</li>
-						<li>下注金额：140</li>
+						<li>注数：{this.props.otherData.total}</li>
+						<li>下注金额：{this.props.otherData.betAmount}</li>
 						<li>
-							结果(总计)：<span>9876543.00</span>
+							结果(总计)：<span>{this.props.otherData.win}</span>
 						</li>
 					</ul>
 				</div>
@@ -233,8 +243,11 @@ FinishedDetail.defaultProps = defaultProps;
 export default connect(
 	state => ({
 		finishedDetail: state.play.finishedDetail,
+		otherData: state.play.finishedOtherData,
 	}),
 	{
 		getFinishedDetailAction: getFinishedDetail,
+		deleteFinishedDetailAction: deleteUnfinishedDetail,
+		updateFinishedDetailAction: updateFinishedDetail,
 	}
 )(FinishedDetail);

@@ -145,11 +145,14 @@ export function getAwardResult(data, success, error) {
 	};
 }
 
-export function deleteUnfinishedResult(success, error) {
+export function deleteUnfinishedDetail(data, success, error) {
 	return {
 		[CALL_API]: {
 			url: DELETE_UNFINISHED_DETAIL,
 			method: 'post',
+			params: {
+				id: data.id,
+			},
 			types: [
 				actionTypes.DELETE_UNFINISHED_DETAIL_REQUEST,
 				actionTypes.DELETE_UNFINISHED_DETAIL_SUCCESS,
@@ -159,4 +162,12 @@ export function deleteUnfinishedResult(success, error) {
 			error,
 		},
 	};
+}
+
+export function updateUnfinishedDetail(data) {
+	return { type: actionTypes.UPDATE_UNFINISHED_DETAIL, payload: data };
+}
+
+export function updateFinishedDetail(data) {
+	return { type: actionTypes.UPDATE_FINISHED_DETAIL, payload: data };
 }

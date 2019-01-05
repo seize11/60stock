@@ -14,11 +14,13 @@ const initialState = {
 	gobetinfo: {},
 	balanceInfo: {},
 	isbet: false,
+	unfinishedOtherData: {},
+	finishedOtherData: {},
 };
 
 export default function playProps(state = initialState, action = {}) {
-	const { type, payload } = action;
-	console.log(payload);
+	const { type, payload, otherData } = action;
+	console.log(payload, otherData);
 	switch (type) {
 		//======CHANGE_SELECT_POPS
 		case actionTypes.CHANGE_SELECT_POPS:
@@ -56,22 +58,23 @@ export default function playProps(state = initialState, action = {}) {
 			return { ...state };
 		// loadingState: LOADING_STATE.BEGIN
 		case actionTypes.GET_UNFINISHED_DETAIL_SUCCESS:
-			console.log(action);
-			return { ...state, unfinishedDetail: payload };
+			console.log(action, otherData);
+			return {
+				...state,
+				unfinishedDetail: payload,
+				unfinishedOtherData: otherData || { total: 0, win: 0, betAmount: 0 },
+			};
 		// loadingState: LOADING_STATE.SUCCESS
 
 		case actionTypes.GET_FINISHED_DETAIL_REQUEST:
 			return { ...state };
 		// loadingState: LOADING_STATE.BEGIN
 		case actionTypes.GET_FINISHED_DETAIL_SUCCESS:
-			console.log(action);
-			let totalWin = 0;
-			let totalMount = 0;
-			payload.forEach((item, index) => {
-				totalWin += item.win;
-			});
-			return { ...state, finishedDetail: payload };
-
+			return {
+				...state,
+				finishedDetail: payload,
+				finishedOtherData: otherData || { total: 0, win: 0, betAmount: 0 },
+			};
 		case actionTypes.GET_AWARD_RESULT_REQUEST:
 			return { ...state, loading: true };
 		// loadingState: LOADING_STATE.BEGIN
@@ -96,6 +99,13 @@ export default function playProps(state = initialState, action = {}) {
 		case actionTypes.GET_UNFINISHED_DETAIL_SUCCESS:
 			return { ...state, unfinishedDetail: payload };
 		// loadingState: LOADING_STATE.SUCCESS
+		case actionTypes.UPDATE_FINISHED_DETAIL:
+			console.log(payload);
+
+			return { ...state, finishedDetail: payload };
+		case actionTypes.UPDATE_UNFINISHED_DETAIL:
+			console.log(payload);
+			return { ...state, unfinishedDetail: payload };
 		default:
 	}
 	return state;
